@@ -21,13 +21,13 @@ public class User {
 	
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer userId;
-	@NotBlank @NotBlank @NotEmpty @Size(min = 3, max = 20)
+	@NotBlank @NotBlank @NotEmpty @Size(min = 3, max = 20,message = "Name must contain at least 3 characters")
 	private String name;
 	@JsonIgnore
 	private String userType = "User";
-	@Email
+	@Email(message = "Invalid Email Address.")
 	private String email;
-//	@Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[*@!&%^])(?=.*[0-9]).{6,8}$")
+	@Pattern(regexp = "[A-Za-z0-9]{6,8}",message = "Password must be 6 to 8 characters and must have at least 1 alphabate and 1 number")
 	@NotNull @NotBlank @NotEmpty
 	private String password;
 }

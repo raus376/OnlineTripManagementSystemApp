@@ -40,4 +40,10 @@ public class UserController {
 		service.userLogout(authKey);
 		return new ResponseEntity<String>("Logged out successfully...",HttpStatus.OK);
 	}
+	
+	@PostMapping("/a/{email}/{code}")
+	public ResponseEntity<User> appointNewAdmin(@RequestParam("email") String email,@RequestParam("code") String passcode)throws InvalidCredentialException{
+		User user = service.makeUserAdmin(email, passcode);
+		return new ResponseEntity<User>(user,HttpStatus.OK);
+	}
 }
