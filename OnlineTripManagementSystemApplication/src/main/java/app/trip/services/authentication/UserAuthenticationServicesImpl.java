@@ -75,7 +75,21 @@ public class UserAuthenticationServicesImpl implements UserAuthenticationService
 		sessionRepo.delete(culs.get());
 		return "Logout successfully...";
 	}
-	
-	
-	
+
+	@Override
+	public User makeUserAdmin(String userEmail,String code) throws InvalidCredentialException {
+		if(!code.equals("admin")) {
+			throw new InvalidCredentialException("Invalid Passcode...");
+		}
+		else if(userEmail.equals(null)) {
+			throw new InvalidCredentialException("Invalid Email Address");
+		}
+		Optional<User> user = userRepo.findByEmail(userEmail);
+		if(!user.isPresent()) {
+			throw new InvalidCredentialException("User not found with Id "+userEmail);
+		}
+		user.get().setUserType("admin");
+		userRepo.save(user.get());
+		return user.get();
+	}	
 }
