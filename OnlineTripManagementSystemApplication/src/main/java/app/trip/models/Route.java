@@ -38,13 +38,13 @@ public class Route {
 	@NotNull @NotBlank @NotEmpty
 	private String RouteTo;
 	
-	@FutureOrPresent
+	@FutureOrPresent(message = "Departure time cannot be in past.")
 	private LocalDateTime departureTime;
 	
-	@Future
+	@FutureOrPresent(message = "Arrival time cannot be in past.")
 	private LocalDateTime arrivalTime;
 	
-	@FutureOrPresent
+	@FutureOrPresent(message = "Journey date cannot be in past.")
 	private LocalDate dateOfJourney;
 	
 	@NotNull @NotBlank @NotEmpty

@@ -33,7 +33,7 @@ public class Packages {
 	@Column(length = 45) @NotNull @NotBlank @NotEmpty
 	private String packageDescription;
 	
-	@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.ORDINAL)
 	private PackageType packageType;
 	
 	@NotNull @Min(0)
