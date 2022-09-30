@@ -1,4 +1,4 @@
-package app.trip.controller.authentication;
+package app.trip.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import app.trip.exceptions.authentication.InvalidCredentialException;
-import app.trip.exceptions.authentication.UserAlreadyExistsException;
-import app.trip.models.authentication.SessionDTO;
-import app.trip.models.authentication.User;
-import app.trip.models.authentication.UserDTO;
-import app.trip.services.authentication.UserAuthenticationServices;
+import app.trip.exceptions.InvalidCredentialException;
+import app.trip.exceptions.UserAlreadyExistsException;
+import app.trip.models.SessionDTO;
+import app.trip.models.User;
+import app.trip.models.UserDTO;
+import app.trip.services.UserAuthenticationServices;
 
 @RestController
 @RequestMapping("/user")
@@ -41,7 +41,7 @@ public class UserController {
 		return new ResponseEntity<String>("Logged out successfully...",HttpStatus.OK);
 	}
 	
-	@PostMapping("/a/{email}/{code}")
+	@PostMapping("/a")
 	public ResponseEntity<User> appointNewAdmin(@RequestParam("email") String email,@RequestParam("code") String passcode)throws InvalidCredentialException{
 		User user = service.makeUserAdmin(email, passcode);
 		return new ResponseEntity<User>(user,HttpStatus.OK);
