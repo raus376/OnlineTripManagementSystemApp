@@ -1,7 +1,8 @@
 package app.trip.models;
 
 public enum PackageType {
-	Premium,
-	Base,
-	Bus;
+	BASE,
+	BUS,
+	HOTEL,
+	PREMIUM;
 }
