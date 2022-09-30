@@ -41,9 +41,9 @@ public class Packages {
 	private String paymentDetails;
 	
 	
-//	@OneToMany(cascade = CascadeType.ALL)
-//	private List<Ticket> ticketDetails;
-//	
+	@OneToMany(mappedBy = "packages" ,cascade = CascadeType.ALL)
+	private List<Ticket> ticketDetails;
+	
 //	@OneToMany(cascade = CascadeType.ALL)
 //	private List<Hotel> hotelDetails;
 	
