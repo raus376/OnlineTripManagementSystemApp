@@ -13,10 +13,13 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Data;import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class User {
 	
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
