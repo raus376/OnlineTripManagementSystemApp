@@ -1,10 +1,10 @@
-package app.trip.services.authentication;
+package app.trip.services;
 
-import app.trip.exceptions.authentication.InvalidCredentialException;
-import app.trip.exceptions.authentication.UserAlreadyExistsException;
-import app.trip.models.authentication.SessionDTO;
-import app.trip.models.authentication.User;
-import app.trip.models.authentication.UserDTO;
+import app.trip.exceptions.InvalidCredentialException;
+import app.trip.exceptions.UserAlreadyExistsException;
+import app.trip.models.SessionDTO;
+import app.trip.models.User;
+import app.trip.models.UserDTO;
 
 public interface UserAuthenticationServices {
 	

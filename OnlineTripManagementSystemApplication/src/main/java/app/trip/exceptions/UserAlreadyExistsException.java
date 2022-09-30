@@ -1,4 +1,4 @@
-package app.trip.exceptions.authentication;
+package app.trip.exceptions;
 
 public class UserAlreadyExistsException extends Exception{
 

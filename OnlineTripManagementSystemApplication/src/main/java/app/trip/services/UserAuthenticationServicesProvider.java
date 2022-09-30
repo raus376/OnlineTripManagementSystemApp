@@ -1,4 +1,4 @@
-package app.trip.services.authentication;
+package app.trip.services;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -7,17 +7,17 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import app.trip.exceptions.authentication.InvalidCredentialException;
-import app.trip.exceptions.authentication.UserAlreadyExistsException;
-import app.trip.models.authentication.CurrentUserLoginSession;
-import app.trip.models.authentication.SessionDTO;
-import app.trip.models.authentication.User;
-import app.trip.models.authentication.UserDTO;
-import app.trip.repository.authentication.SessionRepository;
-import app.trip.repository.authentication.UserRepository;
+import app.trip.exceptions.InvalidCredentialException;
+import app.trip.exceptions.UserAlreadyExistsException;
+import app.trip.models.CurrentUserLoginSession;
+import app.trip.models.SessionDTO;
+import app.trip.models.User;
+import app.trip.models.UserDTO;
+import app.trip.repository.SessionRepository;
+import app.trip.repository.UserRepository;
 
 @Service
-public class UserAuthenticationServicesImpl implements UserAuthenticationServices{
+public class UserAuthenticationServicesProvider implements UserAuthenticationServices{
 	
 	@Autowired
 	UserRepository userRepo;

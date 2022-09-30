@@ -1,4 +1,4 @@
-package app.trip.models.authentication;
+package app.trip.models;
 
 import lombok.Getter;
 import lombok.Setter;
