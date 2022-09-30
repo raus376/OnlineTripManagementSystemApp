@@ -35,7 +35,7 @@ public class Travel {
 	
 	private Integer contact;
 	
-	@JsonIgnore
+	
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Bus> buses;
 	

@@ -9,14 +9,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name="Bus")
 public class Bus {
 	
@@ -30,6 +30,7 @@ public class Bus {
 	
 	private Integer capacity=60;
 	
+	@JsonIgnore
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Travel tDetails;
 
