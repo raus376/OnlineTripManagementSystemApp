@@ -2,6 +2,8 @@ package app.trip.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,7 +46,7 @@ public class RouteController {
 	
 	/* ADMIN ONLY ACCESS */
 	@PostMapping("/addRoute")
-	public ResponseEntity<Route> addRoute(@RequestBody Route route, @RequestParam String authKey) throws AccessDeniedException, InvalidRouteException {
+	public ResponseEntity<Route> addRoute(@Valid @RequestBody Route route, @RequestParam String authKey) throws AccessDeniedException, InvalidRouteException {
 		Route addedRoute = null;
 		
 		addedRoute = routeService.addRoute(route,authKey);
@@ -54,7 +56,7 @@ public class RouteController {
 	
 	/* ADMIN ONLY ACCESS */
 	@PutMapping("/updateRoute")
-	public ResponseEntity<Route> updateRoute(@RequestBody Route route, @RequestParam String authKey) throws InvalidRouteException, AccessDeniedException {
+	public ResponseEntity<Route> updateRoute(@Valid @RequestBody Route route, @RequestParam String authKey) throws InvalidRouteException, AccessDeniedException {
 		Route updatedRoute = routeService.updateRoute(route, authKey);
 		
 		return new ResponseEntity<Route>(updatedRoute,HttpStatus.OK);
@@ -62,7 +64,7 @@ public class RouteController {
 	
 	/* ADMIN ONLY ACCESS */
 	@DeleteMapping("/deleteRoute")
-	public ResponseEntity<Route> removeRoute(@RequestParam Integer routeId,@RequestParam String authKey) throws InvalidRouteException, AccessDeniedException {
+	public ResponseEntity<Route> removeRoute(@RequestParam Integer routeId, @RequestParam String authKey) throws InvalidRouteException, AccessDeniedException {
 		Route deletedRoute = routeService.removeRoute(routeId, authKey);
 		
 		return new ResponseEntity<Route>(deletedRoute,HttpStatus.GONE);

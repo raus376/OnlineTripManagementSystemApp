@@ -9,6 +9,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -28,6 +31,7 @@ public class Ticket {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer ticketId;
 	
+	@NotNull @NotBlank @NotEmpty
 	private String status;
 	
 	@JsonIgnore

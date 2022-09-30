@@ -26,6 +26,7 @@ public class Packages {
 	
 	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer packageId;
+	
 	@Column(length = 45) @NotNull @NotBlank @NotEmpty
 	private String packageName;
 	
@@ -34,6 +35,7 @@ public class Packages {
 	
 	@Enumerated(EnumType.STRING)
 	private PackageType packageType;
+	
 	@NotNull @Min(0)
 	private Integer packageCost;
 	
