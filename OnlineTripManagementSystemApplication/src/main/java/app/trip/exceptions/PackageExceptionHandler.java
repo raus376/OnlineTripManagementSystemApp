@@ -1,4 +1,4 @@
-package app.trip.exceptions.package_exceptions;
+package app.trip.exceptions;
 
 import java.time.LocalDateTime;
 
@@ -12,11 +12,11 @@ import org.springframework.web.context.request.WebRequest;
 public class PackageExceptionHandler {
 	
 	@ExceptionHandler(PackageException.class)
-	public ResponseEntity<PackageErrorDetails> packageExceptionHandler(PackageException pe, WebRequest req){
-		PackageErrorDetails ped = new PackageErrorDetails();
+	public ResponseEntity<ErrorDetails> packageExceptionHandler(PackageException pe, WebRequest req){
+		ErrorDetails ped = new ErrorDetails();
 		ped.setTimestamp(LocalDateTime.now());
 		ped.setMessage(pe.getMessage());
 		ped.setDescription(req.getDescription(false));
-		return new ResponseEntity<PackageErrorDetails>(ped,HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<ErrorDetails>(ped,HttpStatus.BAD_REQUEST);
 	}
 }

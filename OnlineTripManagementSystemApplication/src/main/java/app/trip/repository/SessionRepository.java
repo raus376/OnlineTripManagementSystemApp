@@ -1,4 +1,4 @@
-package app.trip.repository.authentication;
+package app.trip.repository;
 
 import java.util.Optional;
 
@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import app.trip.exceptions.authentication.InvalidCredentialException;
-import app.trip.models.authentication.CurrentUserLoginSession;
-import app.trip.models.authentication.User;
+import app.trip.exceptions.InvalidCredentialException;
+import app.trip.models.CurrentUserLoginSession;
+import app.trip.models.User;
 
 @Repository
 public interface SessionRepository extends JpaRepository<CurrentUserLoginSession, Integer>{
