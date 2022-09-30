@@ -1,4 +1,4 @@
-package app.trip.exceptions.package_exceptions;
+package app.trip.exceptions;
 
 public class PackageException extends Exception{
 
