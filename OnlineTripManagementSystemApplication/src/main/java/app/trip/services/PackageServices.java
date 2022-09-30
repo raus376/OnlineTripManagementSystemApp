@@ -1,9 +1,9 @@
-package app.trip.services.package_services;
+package app.trip.services;
 
 import java.util.List;
 
-import app.trip.exceptions.package_exceptions.PackageException;
-import app.trip.models.travelpackages.Packages;
+import app.trip.exceptions.PackageException;
+import app.trip.models.Packages;
 
 public interface PackageServices {
 	
@@ -11,6 +11,8 @@ public interface PackageServices {
 	public Packages createPackage(Packages pkg,String authKey)throws PackageException;
 	// Admin functionality
 	public Packages updatePackage(Packages pkg,String authKey)throws PackageException;
-	
+	// Admin functionality
+	public Packages deletePackage(Integer pkgId,String authKey)throws PackageException;
 	public List<Packages> getAllPackages()throws PackageException;
+	
 }

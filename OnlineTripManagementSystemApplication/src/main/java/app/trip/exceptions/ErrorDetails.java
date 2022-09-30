@@ -1,11 +1,11 @@
-package app.trip.exceptions.package_exceptions;
+package app.trip.exceptions;
 
 import java.time.LocalDateTime;
 
 import lombok.Data;
 
 @Data
-public class PackageErrorDetails {
+public class ErrorDetails {
 	
 	private LocalDateTime timestamp;
 	private String message;

@@ -1,4 +1,4 @@
-package app.trip.models.travelpackages;
+package app.trip.models;
 
 import java.util.List;
 

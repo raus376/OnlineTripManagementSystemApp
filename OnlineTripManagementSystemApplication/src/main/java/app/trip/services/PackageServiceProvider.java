@@ -1,4 +1,4 @@
-package app.trip.services.package_services;
+package app.trip.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,12 +6,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import app.trip.exceptions.package_exceptions.PackageException;
-import app.trip.models.authentication.CurrentUserLoginSession;
-import app.trip.models.travelpackages.Packages;
-import app.trip.repository.authentication.SessionRepository;
-import app.trip.repository.authentication.UserRepository;
-import app.trip.repository.package_repository.PackageRepository;
+import app.trip.exceptions.PackageException;
+import app.trip.models.CurrentUserLoginSession;
+import app.trip.models.Packages;
+import app.trip.repository.PackageRepository;
+import app.trip.repository.SessionRepository;
+import app.trip.repository.UserRepository;
 
 @Service
 public class PackageServiceProvider implements PackageServices{
@@ -27,6 +27,9 @@ public class PackageServiceProvider implements PackageServices{
 	@Override
 	public Packages createPackage(Packages pkg,String authKey) throws PackageException {
 		Optional<CurrentUserLoginSession> culs = sessionRepo.findByAuthkey(authKey);
+		if(!culs.isPresent()) {
+			throw new PackageException("Invalid Authentication Key");
+		}
 		String userType = userRepo.findById(culs.get().getUserId()).get().getUserType();
 		Optional<Packages> user = pkgRepo.findById(culs.get().getUserId());
 		if(userType.equalsIgnoreCase("user")) {
@@ -43,6 +46,9 @@ public class PackageServiceProvider implements PackageServices{
 	public Packages updatePackage(Packages pkg,String authKey) throws PackageException {
 		
 		Optional<CurrentUserLoginSession> culs = sessionRepo.findByAuthkey(authKey);
+		if(!culs.isPresent()) {
+			throw new PackageException("Invalid Authentication Key");
+		}
 		String userType = userRepo.findById(culs.get().getUserId()).get().getUserType();
 		
 		if(userType.equalsIgnoreCase("user")) {
@@ -55,7 +61,7 @@ public class PackageServiceProvider implements PackageServices{
 		Packages packageUpdated  = pkgRepo.save(pkg);
 		return packageUpdated;
 	}
-
+	
 	@Override
 	public List<Packages> getAllPackages() throws PackageException {
 		
@@ -64,5 +70,24 @@ public class PackageServiceProvider implements PackageServices{
 			throw new PackageException("Packages Not Available.");
 		}
 		return pkgList;
+	}
+
+	@Override
+	public Packages deletePackage(Integer pkgId, String authKey) throws PackageException {
+		Optional<CurrentUserLoginSession> culs = sessionRepo.findByAuthkey(authKey);
+		if(!culs.isPresent()) {
+			throw new PackageException("Invalid Authentication Key");
+		}
+		String userType = userRepo.findById(culs.get().getUserId()).get().getUserType();
+		
+		if(userType.equalsIgnoreCase("user")) {
+			throw new PackageException("Unauthorized Request...");
+		}
+		Optional<Packages> pkg =  pkgRepo.findById(pkgId);
+		if(!pkg.isPresent()) {
+			throw new PackageException("Package doesn't exists with Id : "+pkgId);
+		}
+		pkgRepo.delete(pkg.get());
+		return pkg.get();
 	}
 }

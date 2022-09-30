@@ -1,4 +1,4 @@
-package app.trip.models.authentication;
+package app.trip.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,7 +27,7 @@ public class User {
 	private String userType = "User";
 	@Email(message = "Invalid Email Address.")
 	private String email;
-	@Pattern(regexp = "[A-Za-z0-9]{6,8}",message = "Password must be 6 to 8 characters and must have at least 1 alphabate and 1 number")
+	@Pattern(regexp = "[A-Za-z0-9]{6,12}",message = "Password must be 6 to 8 characters and must have at least 1 alphabate and 1 number")
 	@NotNull @NotBlank @NotEmpty
 	private String password;
 }
