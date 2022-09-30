@@ -2,6 +2,8 @@ package app.trip.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,7 +50,7 @@ public class TicketController {
 	
 	// creates a ticket
 	@PostMapping("/createTicket")
-	public ResponseEntity<Ticket> createTicket(@RequestBody Ticket ticket,  @RequestParam String authKey) throws InvalidTicketException {
+	public ResponseEntity<Ticket> createTicket(@Valid @RequestBody Ticket ticket,  @RequestParam String authKey) throws InvalidTicketException {
 		Ticket createdTicket = null;
 		
 		createdTicket = ticketService.createTicket(ticket);
