@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import app.trip.exceptions.InvalidCredentialException;
 import app.trip.exceptions.InvalidTicketException;
 import app.trip.models.CurrentUserLoginSession;
 import app.trip.models.Packages;
@@ -39,15 +40,19 @@ public class TicketServiceImpl implements TicketService {
 		Optional<CurrentUserLoginSession> culs = sessionRepo.findByAuthkey(authKey);
 		
 		String userType = userRepo.findById(culs.get().getUserId()).get().getUserType();
-		
-		Optional<Packages> pkg = pkgRepo.findById(packageId);
-		
-		Packages packages = pkg.get();
-		
-		if(userType.equalsIgnoreCase("user")) {
+				
+		if(userType.equalsIgnoreCase("user") && packageId != null) {
+			Optional<Packages> pkg = pkgRepo.findById(packageId);
+			Packages packages = pkg.get();
 			tickets = ticketRepo.findByPackages(packages);
-		} else if(userType.equalsIgnoreCase("admin")) {
+		} else if(userType.equalsIgnoreCase("admin") && packageId == null) {
 			tickets = ticketRepo.findAll();			
+		} else if(userType.equalsIgnoreCase("admin") && packageId != null) {
+			Optional<Packages> pkg = pkgRepo.findById(packageId);
+			Packages packages = pkg.get();
+			tickets = ticketRepo.findByPackages(packages);
+		} else {
+			throw new InvalidTicketException("Please enter package Id.");
 		}
 		
 		if(tickets.isEmpty() || tickets == null) {
