@@ -18,6 +18,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -42,7 +44,7 @@ public class Packages {
 	@NotNull @NotBlank @NotEmpty @Column(length = 45)
 	private String paymentDetails;
 	
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "packages" ,cascade = CascadeType.ALL)
 	private List<Ticket> ticketDetails;
 	
