@@ -18,6 +18,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -44,8 +46,9 @@ public class Packages {
 //	@OneToMany(cascade = CascadeType.ALL)
 //	private List<Ticket> ticketDetails;
 //	
-//	@OneToMany(cascade = CascadeType.ALL)
-//	private List<Hotel> hotelDetails;
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "packages")
+	private List<Hotel> hotelDetails;
 	
 //	@OneToOne(cascade = CascadeType.ALL)
 //	private Booking bookingDetails;
