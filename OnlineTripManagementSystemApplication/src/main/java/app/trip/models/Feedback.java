@@ -1,5 +1,7 @@
 package app.trip.models;
 
+import java.sql.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,33 +17,17 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class Hotel {
+public class Feedback {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer hotelId;
-	private String hotelName;
-	private String hotelType;
-	private String hotelDescription;
-	
-	private String address;
-	private Integer rent;
-	private String status;
-	
+	private Integer feedbackId;
+	private String feedbackString;
+	private double rating;
+	private Date date;
 	
 	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
-	private Packages packages;
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	private User user;
 
 }

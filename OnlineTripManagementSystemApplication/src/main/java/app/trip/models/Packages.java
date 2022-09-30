@@ -46,10 +46,12 @@ public class Packages {
 //	@OneToMany(cascade = CascadeType.ALL)
 //	private List<Ticket> ticketDetails;
 //	
-	@JsonIgnore
+	
+	
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "packages")
 	private List<Hotel> hotelDetails;
 	
+//	
 //	@OneToOne(cascade = CascadeType.ALL)
 //	private Booking bookingDetails;
 }
