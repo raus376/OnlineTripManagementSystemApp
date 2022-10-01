@@ -1,5 +1,6 @@
 package app.trip.models;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -12,14 +13,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 
 @Entity
 @Table(name="Travels")
 @Data
+@ToString
 public class Travel {
 	
 	@Id
@@ -37,10 +42,12 @@ public class Travel {
 	
 	private Integer contact;
 	
-//	@JsonIgnore
+//    @JsonIgnore
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="tDetails",fetch=FetchType.EAGER)
-	private Set<Bus> buses;
+	private Set<Bus> buses=new HashSet<>();
 	
+//	@OneToOne(cascade=CascadeType.ALL)
+//	private Route route;
 	
 
 	@Override

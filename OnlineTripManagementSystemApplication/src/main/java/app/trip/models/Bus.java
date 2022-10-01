@@ -7,33 +7,31 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 
 @Entity
 @Table(name="Bus")
 @Data
-@EqualsAndHashCode
+@ToString
 public class Bus {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer busId;
 	
-	@Enumerated(EnumType.ORDINAL)
+	@Enumerated(EnumType.STRING)
 	private BusType busType;
 	
 	private Integer busNo;
 	
-	private Integer capacity=60;
-	
+	private Integer capacity;
 	
 	@JsonIgnore
 	@ManyToOne(cascade=CascadeType.ALL)

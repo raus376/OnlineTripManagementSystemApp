@@ -2,6 +2,7 @@ package app.trip.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,11 +57,11 @@ public class TravelServiceImplementation implements TravelService{
 	    	  
 	    	  if(user.getUserType().equals("admin")) {
 	    		 System.out.println(travel);
-////	    		  t= tDao.save(travel);	
-//	    		List<Bus> buses= travel.getBuses();
-//	    		for(Bus b:buses) {
-//	    			b.setTDetails(travel);
-//	    		}
+	    		  t= tDao.save(travel);	
+	    		Set<Bus> buses= travel.getBuses();
+	    		for(Bus b:buses) {
+	    			b.setTDetails(travel);
+	    		}
 	    		t= tDao.save(travel);	
 	    	  }
 	    	  else {

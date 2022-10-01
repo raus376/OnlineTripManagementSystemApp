@@ -35,7 +35,8 @@ public class BusServiceImplimentation implements BusService{
 	private BusRepository bRepo;
 	
 	
-	
+
+
 	@Override
 	public List<Bus> getAllBusFromAllAgency() throws BusException {
 		List<Bus> busList=new ArrayList<>();
@@ -100,6 +101,9 @@ public class BusServiceImplimentation implements BusService{
 		    }
 			return b;
 	}
+
+
+
 
 
 
