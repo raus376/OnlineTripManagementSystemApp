@@ -49,13 +49,16 @@ public class TicketServiceImpl implements TicketService {
 			tickets = ticketRepo.findAll();			
 		} else if(userType.equalsIgnoreCase("admin") && packageId != null) {
 			Optional<Packages> pkg = pkgRepo.findById(packageId);
+			if(pkg.isEmpty()) {
+				throw new InvalidTicketException("No package exists with package Id = "+packageId);
+			}
 			Packages packages = pkg.get();
 			tickets = ticketRepo.findByPackages(packages);
 		} else {
 			throw new InvalidTicketException("Please enter package Id.");
 		}
 		
-		if(tickets.isEmpty() || tickets == null) {
+		if(tickets.isEmpty() || tickets == null || tickets.size() == 0) {
 			throw new InvalidTicketException("Tickets Not Available.");
 		}
 		
