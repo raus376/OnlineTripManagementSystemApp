@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,13 +17,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import app.trip.exceptions.InvalidRouteException;
 import app.trip.exceptions.InvalidTicketException;
+import app.trip.exceptions.PackageException;
 import app.trip.models.Ticket;
 import app.trip.services.TicketService;
 
 
 @RestController
 @RequestMapping("/ticket")
+@CrossOrigin(origins = "*")
 public class TicketController {
 	
 	@Autowired
@@ -40,7 +44,7 @@ public class TicketController {
 	
 	// gets specific ticket
 	@GetMapping("/showTicket")
-	public ResponseEntity<Ticket> getTicket(@RequestParam Integer ticketId, @RequestParam String authKey) throws InvalidTicketException {
+	public ResponseEntity<Ticket> getTicket(@RequestParam Integer ticketId) throws InvalidTicketException {
 		Ticket ticket = null;
 		
 		ticket = ticketService.getTicket(ticketId);
@@ -50,17 +54,17 @@ public class TicketController {
 	
 	// creates a ticket
 	@PostMapping("/createTicket")
-	public ResponseEntity<Ticket> createTicket(@Valid @RequestBody Ticket ticket,  @RequestParam String authKey) throws InvalidTicketException {
+	public ResponseEntity<Ticket> createTicket(@Valid @RequestBody Ticket ticket, @RequestParam Integer packageId, @RequestParam Integer routeId) throws InvalidTicketException, InvalidRouteException, PackageException {
 		Ticket createdTicket = null;
 		
-		createdTicket = ticketService.createTicket(ticket);
+		createdTicket = ticketService.createTicket(ticket, packageId, routeId);
 		
 		return new ResponseEntity<Ticket>(createdTicket,HttpStatus.CREATED);
 	}
 	
 	// deletes a ticket
 	@DeleteMapping("/removeTicket")
-	public ResponseEntity<Ticket> deleteTicket(@RequestParam Integer ticketId,  @RequestParam String authKey) throws InvalidTicketException {
+	public ResponseEntity<Ticket> deleteTicket(@RequestParam Integer ticketId) throws InvalidTicketException {
 		Ticket ticket = null;
 		
 		ticket = ticketService.deleteTicket(ticketId);

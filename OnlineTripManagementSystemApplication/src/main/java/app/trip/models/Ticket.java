@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -36,15 +37,23 @@ public class Ticket {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer ticketId;
 	
+	/*
+	 * Description about the ticket - Package and Route 
+	*/
 	@NotNull @NotBlank @NotEmpty
 	private String ticketDescription;
 	
-	@Enumerated(EnumType.ORDINAL)
-	private TicketStatus ticketStatus;
-	
+	/*
+	 * TRUE - BOOKED
+	 * FALSE - NOT_BOOKED
+	 */
+	private Boolean ticketStatus;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "packageId")
 	private Packages packages;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "routeId")
+	private Route route;
 }
