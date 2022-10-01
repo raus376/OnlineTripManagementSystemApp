@@ -1,9 +1,13 @@
 package app.trip.models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -13,10 +17,13 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Data;import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class User {
 	
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,4 +37,8 @@ public class User {
 	@Pattern(regexp = "[A-Za-z0-9]{6,12}",message = "Password must be 6 to 8 characters and must have at least 1 alphabate and 1 number")
 	@NotNull @NotBlank @NotEmpty
 	private String password;
+	
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	private List<Feedback> feedbacks;
 }
