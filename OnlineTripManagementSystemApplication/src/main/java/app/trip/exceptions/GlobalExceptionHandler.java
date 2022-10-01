@@ -34,8 +34,6 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<ErrorDetails>(authEx,HttpStatus.BAD_REQUEST);
 	}
 
-	
-	
 	@ExceptionHandler(AccessDeniedException.class)
 	public ResponseEntity<ErrorDetails> AccessDeniedExceptionHandler(AccessDeniedException exp, WebRequest req){
 		ErrorDetails authEx = new ErrorDetails();
@@ -63,7 +61,7 @@ public class GlobalExceptionHandler {
 		authEx.setMessage(exp.getMessage());
 		authEx.setDescription(req.getDescription(false));
 		
-		return new ResponseEntity<ErrorDetails>(authEx,HttpStatus.NO_CONTENT);
+		return new ResponseEntity<ErrorDetails>(authEx,HttpStatus.NOT_FOUND);
 	}
 	
 	@ExceptionHandler(PackageException.class)
