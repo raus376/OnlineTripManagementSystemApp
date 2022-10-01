@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import app.trip.exceptions.BookingException;
@@ -38,44 +37,69 @@ public class BookingServiceImpl implements BookingService{
 	public Booking makeBooking(Booking bookings) throws BookingException {
 		List<User> users = bookings.getUsers();
 		for(User user:users) {
-			// user.getBookings.setBookings(bookings);
+			 user.getBookings().add(bookings);
 		}
 		return bookRepo.save(bookings);
 	}
-
+	
+	
 	@Override
-	public boolean cancelBooking(Booking bookings) throws BookingException {
-		Integer bookingId = bookings.getBookingId();
-		if(bookingId != null) {
-			bookRepo.deleteById(bookings.getBookingId());
-			return true;
+	public Booking cancelBooking(Integer bookingsId) throws BookingException {
+		Booking booking = null;
+		Optional<Booking> book = bookRepo.findById(bookingsId);
+		if(book.isPresent()) {
+			booking = book.get();
+			bookRepo.delete(booking);
 		}else {
 			throw new BookingException("Booking not exists");
 		}
+		return booking;
 	}
 	
 	/*
-	 * @Query("select s.name from Student s where s.roll=:roll")
-		public String getStudentNameByRoll(@Param("roll") int roll);
-		
-		select * from booking Inner join booking_users on 
-		booking.booking_id = booking_users.booking_booking_id;
+	 * entityManager.remove(group)
+		for (User user : group.users) {
+		     user.groups.remove(group);
+		}
 	 */
+
 	@Override
-	public List<Booking> viewBookings(User user) throws BookingException {
+	public List<Booking> viewBookings(Integer userId) throws BookingException {
+		User user = null;
+		Optional<User> userOpt = userRepo.findById(userId);
+		if(userOpt.isPresent()) {
+			user = userOpt.get();
+			List<Booking> bookings = user.getBookings();
+			if(bookings.isEmpty()) {
+				throw new BookingException("No booking exists..");
+			}else {
+//				for(Booking booking: user.getBookings()) {
+//					user.getBookings().remove(booking);
+//				}
+			}
+			return bookings;
+		}else {
+			throw new BookingException("No user exists..");
+		}
 		
-		return null;
 	}
+
 
 	@Override
 	public List<Booking> viewAllBookings(String authKey) throws BookingException {
 		Optional<CurrentUserLoginSession> currUser = sessionRepo.findByAuthkey(authKey);
 		String userType = userRepo.findById(currUser.get().getUserId()).get().getUserType();
+		List<Booking> bookings = null;
 		if(userType.equalsIgnoreCase("user")) {
 			throw new BookingException("Unauthorized Request...");
 		}
 		else{
-			return bookRepo.findAll();
+			bookings = bookRepo.findAll();
+			if(bookings.isEmpty()) {
+				throw new BookingException("No bookings available...");
+			}else {
+				return bookings;
+			}
 		}
 	}
 	

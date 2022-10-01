@@ -12,7 +12,7 @@ public interface ReportService {
 	 * Administrator Access
 	 */
 	public Report addReport(Report report, String authKey) throws ReportException;
-	public Integer deleteReport(Integer reportId, String authKey) throws ReportException;
 	public List<Report> viewAllReports(String authKey) throws ReportException;
+	public Report deleteReport(Integer reportId, String authKey) throws ReportException;
 	
 }
