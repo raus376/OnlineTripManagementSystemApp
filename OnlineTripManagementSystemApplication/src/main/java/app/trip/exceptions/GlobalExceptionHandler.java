@@ -12,29 +12,7 @@ import org.springframework.web.context.request.WebRequest;
 public class GlobalExceptionHandler {
 	
 	
-	//TravelExceptionHandler
 	
-	@ExceptionHandler(TravelException.class)
-	public ResponseEntity<ErrorDetails> travelExceptionHandler(TravelException te, WebRequest req){
-		
-		ErrorDetails err=new ErrorDetails();
-		err.setTimestamp(LocalDateTime.now());
-		err.setMessage(te.getMessage());
-		err.setDescription(req.getDescription(false));
-		
-		return new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
-	}
-	
-	@ExceptionHandler(BusException.class)
-	public ResponseEntity<ErrorDetails> busExceptionHandler(BusException be, WebRequest req){
-		
-		ErrorDetails err=new ErrorDetails();
-		err.setTimestamp(LocalDateTime.now());
-		err.setMessage(be.getMessage());
-		err.setDescription(req.getDescription(false));
-		
-		return new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
-	}
 	
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ErrorDetails> OtherExceptionHandler(Exception uae, WebRequest req){
