@@ -32,3 +32,4 @@
 2022-10-01 10:13:23,486 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2022-10-01 10:13:23,486 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
 2022-10-01 10:13:23,486 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Masai Git\Raushan_fw18_0739\unit-6\sprint-4\day-5\assignments\SpringBootAppManageProduct\src\test\resources
+2022-10-01 20:43:24,476 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
