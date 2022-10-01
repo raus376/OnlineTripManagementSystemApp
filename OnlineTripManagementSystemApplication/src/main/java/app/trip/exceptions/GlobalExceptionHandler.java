@@ -63,7 +63,7 @@ public class GlobalExceptionHandler {
 		authEx.setMessage(exp.getMessage());
 		authEx.setDescription(req.getDescription(false));
 		
-		return new ResponseEntity<ErrorDetails>(authEx,HttpStatus.NO_CONTENT);
+		return new ResponseEntity<ErrorDetails>(authEx,HttpStatus.NOT_FOUND);
 	}
 	
 	@ExceptionHandler(PackageException.class)

@@ -58,6 +58,7 @@ public class Route {
 	private Ticket ticket;
 
 	//@OneToOne(cascade = CascadeType.ALL)
-	//private Integer busId;
+	//@JoinColumn(name = "travelId")
+	//private Travel travelId;
 
 }
