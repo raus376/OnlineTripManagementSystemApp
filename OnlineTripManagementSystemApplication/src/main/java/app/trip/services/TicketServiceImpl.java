@@ -7,11 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.trip.exceptions.InvalidCredentialException;
+import app.trip.exceptions.InvalidRouteException;
 import app.trip.exceptions.InvalidTicketException;
+import app.trip.exceptions.PackageException;
 import app.trip.models.CurrentUserLoginSession;
 import app.trip.models.Packages;
+import app.trip.models.Route;
 import app.trip.models.Ticket;
 import app.trip.repository.PackageRepository;
+import app.trip.repository.RouteRepository;
+
 import app.trip.repository.SessionRepository;
 import app.trip.repository.TicketRepository;
 import app.trip.repository.UserRepository;
@@ -32,6 +37,8 @@ public class TicketServiceImpl implements TicketService {
 	@Autowired
 	UserRepository userRepo;
 	
+	@Autowired
+	RouteRepository routeRepo;
 
 	@Override
 	public List<Ticket> getAllTickets(Integer packageId,String authKey) throws InvalidTicketException {
@@ -69,7 +76,7 @@ public class TicketServiceImpl implements TicketService {
 		Optional<Ticket> tkt = ticketRepo.findById(ticketId);
 		
 		if(tkt.isPresent() == false) {
-			throw new InvalidTicketException("No such Ticket exists.");
+			throw new InvalidTicketException("No such ticket exists.");
 		} else {
 			ticket = tkt.get();
 		}
@@ -78,12 +85,20 @@ public class TicketServiceImpl implements TicketService {
 	}
 	
 	@Override
-	public Ticket createTicket(Ticket ticket) throws InvalidTicketException {
-		Optional<Ticket> user = ticketRepo.findById(ticket.getTicketId());
+	public Ticket createTicket(Ticket ticket, Integer packageId, Integer routeId) throws InvalidTicketException, PackageException, InvalidRouteException  {
 		
-		if(user.isPresent()) {
-			throw new InvalidTicketException("Ticket Already Exists with Id "+ticket.getTicketId());
+		Optional<Packages> pkgOpt = pkgRepo.findById(packageId);
+		if(pkgOpt.isEmpty()) {
+			throw new PackageException("Package with package id = "+packageId+" does not exist.");
 		}
+		
+		Optional<Route> routeOpt = routeRepo.findById(routeId);
+		if(routeOpt.isEmpty()) {
+			throw new InvalidRouteException("Route with route id = "+routeId+" does not exist.");
+		}
+		
+		ticket.setPackages(pkgOpt.get());
+		ticket.setRoute(routeOpt.get());
 		
 		Ticket ticketCreated  = ticketRepo.save(ticket);
 		
