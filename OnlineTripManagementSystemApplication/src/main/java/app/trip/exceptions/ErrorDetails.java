@@ -2,14 +2,14 @@ package app.trip.exceptions;
 
 import java.time.LocalDateTime;
 
-<<<<<<< HEAD
-=======
 
 import lombok.AllArgsConstructor;
->>>>>>> Kunal-L
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ErrorDetails {
 	
 	private LocalDateTime timestamp;

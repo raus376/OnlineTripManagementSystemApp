@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import app.trip.exceptions.PackageException;
 import app.trip.models.CurrentUserLoginSession;
-import app.trip.models.Hotel;
 import app.trip.models.Packages;
 import app.trip.repository.PackageRepository;
 import app.trip.repository.SessionRepository;
@@ -38,11 +37,6 @@ public class PackageServiceProvider implements PackageServices{
 		}
 		else if(user.isPresent()) {
 			throw new PackageException("Package Already Exists with Id "+pkg.getPackageId());
-		}
-		List<Hotel> hotelList=pkg.getHotelDetails();
-		for(Hotel hotel:hotelList)
-		{
-			hotel.setPackages(pkg);
 		}
 		Packages packageCreated  = pkgRepo.save(pkg);
 		return packageCreated;
