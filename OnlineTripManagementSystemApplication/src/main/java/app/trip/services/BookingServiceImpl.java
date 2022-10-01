@@ -49,11 +49,16 @@ public class BookingServiceImpl implements BookingService{
 		Optional<Booking> book = bookRepo.findById(bookingsId);
 		if(book.isPresent()) {
 			booking = book.get();
+			List<User> users = booking.getUsers();
+			for(User user:users) {
+				 user.getBookings().remove(booking);
+			}
 			bookRepo.delete(booking);
+			return booking;
 		}else {
 			throw new BookingException("Booking not exists");
 		}
-		return booking;
+				
 	}
 	
 	/*
