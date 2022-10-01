@@ -29,6 +29,7 @@ public class Hotel {
 	private String status;
 	
 	
+	//
 	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Packages packages;
