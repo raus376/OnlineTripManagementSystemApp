@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.trip.exceptions.TravelException;
+import app.trip.models.Bus;
 import app.trip.models.CurrentUserLoginSession;
 import app.trip.models.Travel;
 import app.trip.models.User;
@@ -53,8 +54,14 @@ public class TravelServiceImplementation implements TravelService{
 	    	 Optional<User> optUser=uRepo.findById(loginSession.getUserId());
 	    	  User user=optUser.get();
 	    	  
-	    	  if(user.getUserType().equals("Admin")) {
-	    		  t= tDao.save(travel);	  
+	    	  if(user.getUserType().equals("admin")) {
+	    		 System.out.println(travel);
+////	    		  t= tDao.save(travel);	
+//	    		List<Bus> buses= travel.getBuses();
+//	    		for(Bus b:buses) {
+//	    			b.setTDetails(travel);
+//	    		}
+	    		t= tDao.save(travel);	
 	    	  }
 	    	  else {
 	    		  throw new TravelException("Only Admin have to Access this.");
@@ -79,7 +86,7 @@ public Travel updateTravels(Travel travel, String authKey) throws TravelExceptio
 	    	 Optional<User> optUser=uRepo.findById(loginSession.getUserId());
 	    	  User user=optUser.get();
 	    	  
-	    	  if(user.getUserType().equals("Admin")) {
+	    	  if(user.getUserType().equals("admin")) {
 	    		 Optional<Travel> updateTravel= tDao.findById(travel.getTravelId());
 	    		 
 	    		 if(!updateTravel.isPresent()) {
@@ -113,7 +120,7 @@ public Travel removeTravels(Integer travelId, String authKey) throws TravelExcep
 		    	 Optional<User> optUser=uRepo.findById(loginSession.getUserId());
 		    	  User user=optUser.get();
 		    	  
-		    	  if(user.getUserType().equals("Admin")) {
+		    	  if(user.getUserType().equals("admin")) {
 		    		 Optional<Travel> findTravel= tDao.findById(travelId);
 		    		 
 		    		 if(!findTravel.isPresent()) {

@@ -11,6 +11,7 @@ import org.springframework.web.context.request.WebRequest;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 	
+	
 	//TravelExceptionHandler
 	
 	@ExceptionHandler(TravelException.class)
