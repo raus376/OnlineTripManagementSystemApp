@@ -2,6 +2,11 @@ package app.trip.exceptions;
 
 import java.time.LocalDateTime;
 
+<<<<<<< HEAD
+=======
+
+import lombok.AllArgsConstructor;
+>>>>>>> Kunal-L
 import lombok.Data;
 
 @Data
