@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import app.trip.exceptions.InvalidCredentialException;
 import app.trip.exceptions.InvalidRouteException;
 import app.trip.exceptions.InvalidTicketException;
 import app.trip.exceptions.PackageException;
@@ -45,7 +44,6 @@ public class TicketServiceImpl implements TicketService {
 		List<Ticket> tickets = null;
 		
 		Optional<CurrentUserLoginSession> culs = sessionRepo.findByAuthkey(authKey);
-		
 		String userType = userRepo.findById(culs.get().getUserId()).get().getUserType();
 				
 		if(userType.equalsIgnoreCase("user") && packageId != null) {
