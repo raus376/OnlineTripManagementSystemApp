@@ -1,0 +1,14 @@
+2022-10-01 09:15:30,792 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2022-10-01 09:17:42,219 [Worker-2: Importing Maven projects] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: app.trip:OnlineTripManagementSystemApplication:0.0.1-SNAPSHOT @ C:\Users\lalit\OneDrive\Desktop\OnlineTripManagementSystemApp\OnlineTripManagementSystemApplication\pom.xml.
+2022-10-01 09:18:02,166 [Worker-2: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /OnlineTripManagementSystemApplication/src/main/java
+2022-10-01 09:18:02,166 [Worker-2: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /OnlineTripManagementSystemApplication/src/main/resources
+2022-10-01 09:18:02,166 [Worker-2: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /OnlineTripManagementSystemApplication/src/main/resources
+2022-10-01 09:18:02,174 [Worker-2: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /OnlineTripManagementSystemApplication/src/test/java
+2022-10-01 09:18:03,488 [Worker-2: Importing Maven projects] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 44 sec
+2022-10-01 09:18:15,595 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-10-01 09:18:15,603 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-10-01 09:18:15,611 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-10-01 09:18:15,667 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-10-01 09:18:15,699 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-10-01 09:18:15,699 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-10-01 09:18:15,699 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\lalit\OneDrive\Desktop\OnlineTripManagementSystemApp\OnlineTripManagementSystemApplication\src\test\resources
