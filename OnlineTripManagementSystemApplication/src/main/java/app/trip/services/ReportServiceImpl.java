@@ -6,9 +6,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import app.trip.exceptions.InvalidTicketException;
+import app.trip.exceptions.PackageException;
 import app.trip.exceptions.ReportException;
 import app.trip.models.CurrentUserLoginSession;
+import app.trip.models.Packages;
 import app.trip.models.Report;
+import app.trip.models.Ticket;
 import app.trip.repository.PackageRepository;
 import app.trip.repository.ReportRepository;
 import app.trip.repository.SessionRepository;
@@ -42,22 +46,25 @@ public class ReportServiceImpl implements ReportService{
 	}
 
 	@Override
-	public Integer deleteReport(Integer reportId, String authKey) throws ReportException {
+	public Report deleteReport(Integer reportId, String authKey) throws ReportException {
 		Optional<CurrentUserLoginSession> curUser = sessionRepo.findByAuthkey(authKey);
 		String userType = userRepo.findById(curUser.get().getUserId()).get().getUserType();
 		if(userType.equalsIgnoreCase("user")) {
 			throw new ReportException("Unauthorized Request...");
 		}
-		else {
-			reportRepo.deleteById(reportId);
-			return reportId;
+		Optional<Report> reportOpt =  reportRepo.findById(reportId);
+		if(!reportOpt.isPresent()) {
+			throw new ReportException("Report not exist...");
 		}
+		reportRepo.deleteById(reportId);
+		return reportOpt.get();
 	}
+	
 
 	@Override
 	public List<Report> viewAllReports(String authKey) throws ReportException {
-		Optional<CurrentUserLoginSession> culs = sessionRepo.findByAuthkey(authKey);
-		String userType = userRepo.findById(culs.get().getUserId()).get().getUserType();
+		Optional<CurrentUserLoginSession> curUser = sessionRepo.findByAuthkey(authKey);
+		String userType = userRepo.findById(curUser.get().getUserId()).get().getUserType();
 		if(userType.equalsIgnoreCase("user")) {
 			throw new ReportException("Unauthorized Request...");
 		}

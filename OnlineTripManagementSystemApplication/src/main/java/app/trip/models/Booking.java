@@ -17,13 +17,13 @@ import lombok.Data;
 @Entity @Table(name = "Booking")
 public class Booking {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer bookingId;
 	private String bookingType;
 	private String description;
 	private String bookingTitle;
 	private LocalDateTime date;
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	private List<User> users = new ArrayList<>();
 	public Integer getBookingId() {
 		return bookingId;

@@ -7,5 +7,5 @@ import app.trip.models.Report;
 
 @Repository
 public interface ReportRepository extends JpaRepository<Report, Integer>{
-
+	
 }
