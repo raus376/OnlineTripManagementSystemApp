@@ -60,5 +60,4 @@ public class Route {
 	//@OneToOne(cascade = CascadeType.ALL)
 	//@JoinColumn(name = "travelId")
 	//private Travel travelId;
-
 }
