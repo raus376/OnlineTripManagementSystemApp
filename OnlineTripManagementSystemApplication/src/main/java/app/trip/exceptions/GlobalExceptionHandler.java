@@ -46,25 +46,7 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<ErrorDetails>(authEx,HttpStatus.FORBIDDEN);
 	}
 	
-	@ExceptionHandler(InvalidTicketException.class)
-	public ResponseEntity<ErrorDetails> InvalidTicketExceptionHandler(InvalidTicketException exp, WebRequest req){
-		ErrorDetails authEx = new ErrorDetails();
-		authEx.setTimestamp(LocalDateTime.now());
-		authEx.setMessage(exp.getMessage());
-		authEx.setDescription(req.getDescription(false));
-		
-		return new ResponseEntity<ErrorDetails>(authEx,HttpStatus.NO_CONTENT);
-	}
 	
-	@ExceptionHandler(InvalidRouteException.class)
-	public ResponseEntity<ErrorDetails> InvalidRouteExceptionHandler(InvalidRouteException exp, WebRequest req){
-		ErrorDetails authEx = new ErrorDetails();
-		authEx.setTimestamp(LocalDateTime.now());
-		authEx.setMessage(exp.getMessage());
-		authEx.setDescription(req.getDescription(false));
-		
-		return new ResponseEntity<ErrorDetails>(authEx,HttpStatus.NOT_FOUND);
-	}
 	
 	@ExceptionHandler(PackageException.class)
 	public ResponseEntity<ErrorDetails> packageExceptionHandler(PackageException pe, WebRequest req){
