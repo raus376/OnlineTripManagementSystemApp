@@ -48,9 +48,18 @@ public class Packages {
 	@OneToMany(mappedBy = "packages" ,cascade = CascadeType.ALL)
 	private List<Ticket> ticketDetails;
 	
-//	@OneToMany(cascade = CascadeType.ALL)
-//	private List<Hotel> hotelDetails;
+//	@OneToMany(cascade = Cascade
+//	private List<Ticket> ticketDetails;
+//	
 	
+	
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "packages")
+	private List<Hotel> hotelDetails;
+
+
+
+	
+//	
 //	@OneToOne(cascade = CascadeType.ALL)
 //	private Booking bookingDetails;
 }
