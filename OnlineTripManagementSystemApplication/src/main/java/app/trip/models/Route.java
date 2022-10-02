@@ -42,7 +42,6 @@ public class Route {
 	
 	private LocalDateTime departureTime;
 	
-	@FutureOrPresent(message = "Arrival time cannot be in past.")
 	private LocalDateTime arrivalTime;
 	
 	private LocalDate dateOfJourney;
