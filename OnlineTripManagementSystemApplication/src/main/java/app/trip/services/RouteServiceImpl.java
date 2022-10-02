@@ -60,9 +60,10 @@ public class RouteServiceImpl implements RouteService {
 			
 			Optional<Travel> travelOpt = travelRepo.findById(travelId);
 			
-			Travel travel = travelOpt.get();
-			
-			route.setTravelId(travel);
+			if(travelOpt.isPresent()) {
+				Travel travel = travelOpt.get();
+				route.setTravelId(travel);				
+			}
 			
 			createdRoute = routeRepo.save(route);
 		} else {
