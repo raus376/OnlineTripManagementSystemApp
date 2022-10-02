@@ -3,14 +3,12 @@
 
 <!-- ============================================  DETAILS ======================================================  -->
 
-<hr>
 <li>An Collabrative Project Consisting Of the 5 Developer Depicting the implementation of the Trip Managment Platform like MakeMyTrip or Yatra.
 <li>An developement of RESTful API for an application. This API performs all the fundamental CRUD operations of any with user validation at every step.
 
 * We have developed this REST API for an Online Cab Booking application. This API performs all the fundamental CRUD operations of any Online Cab Booking platform with user validation at every step.
 * This project is developed by team of 5 Back-end Developers during project week in Masai School. 
-
-  <br>
+<br>
   
 <!-- ============================================  FEATURES ======================================================  -->
 
@@ -62,7 +60,7 @@
 <!-- ============================================  ER - DIAGRAM ======================================================  -->
 
 # ER Diagram
-<hr>
+
 The following Diagram depicts the flow of our Entity Relation Diagram to simplify the work flow.
 <br>
 <br>
@@ -172,4 +170,5 @@ The following Diagram depicts the flow of our Entity Relation Diagram to simplif
         "sessionEndTime": "2022-06-10T11:48:20.0109626"
     }
 ```
-
+<hr>
+this is a horizonatal line
