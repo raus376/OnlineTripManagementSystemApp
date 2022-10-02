@@ -21,7 +21,7 @@ import app.trip.services.PackageServiceProvider;
 
 @RestController
 @RequestMapping("/packages")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*")
 public class PackageController {
 	
 	@Autowired

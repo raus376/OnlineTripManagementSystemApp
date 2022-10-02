@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.trip.exceptions.InvalidCredentialException;
+import app.trip.exceptions.PackageException;
 import app.trip.exceptions.UserAlreadyExistsException;
 import app.trip.models.CurrentUserLoginSession;
+import app.trip.models.Packages;
 import app.trip.models.SessionDTO;
 import app.trip.models.User;
 import app.trip.models.UserDTO;
@@ -90,6 +92,30 @@ public class UserAuthenticationServicesProvider implements UserAuthenticationSer
 		}
 		user.get().setUserType("admin");
 		userRepo.save(user.get());
+		return user.get();
+	}
+
+	@Override
+	public boolean updateUser(User user) throws InvalidCredentialException {
+		Optional<User> checkUser = userRepo.findByEmail(user.getEmail());
+		if(!checkUser.isPresent())throw new InvalidCredentialException("User doesn't exists with Id "+user.getEmail());
+		User u = userRepo.save(user);
+		return u!=null;
+}
+
+	@Override
+	public User deleteUser(Integer userId, String authKey) throws InvalidCredentialException {
+		Optional<CurrentUserLoginSession> culs = sessionRepo.findByAuthkey(authKey);
+		if(!culs.isPresent()) {
+			throw new InvalidCredentialException("Invalid Authentication Key");
+		}
+		String userType = userRepo.findById(culs.get().getUserId()).get().getUserType();
+		if(userType.equalsIgnoreCase("user")) {
+			throw new InvalidCredentialException("Unauthorized Request...");
+		}
+		Optional<User> user = userRepo.findById(userId);
+		if(!user.isPresent())throw new InvalidCredentialException("User doesn't exits with Id "+userId);
+		userRepo.delete(user.get());
 		return user.get();
 	}	
 }

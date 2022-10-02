@@ -55,12 +55,12 @@ public class HotelServiceImpl implements HotelService{
 	    		     {
 	    		    	 throw new HotelException("Package with given pakcage Id does not exist");
 	    		     }
-                 Packages packages = optPackage.get();
-                 
-                 hotel.setPackages(packages);
-                 Hotel returnedHotel=hotelDao.save(hotel);
-             
-                  return returnedHotel;
+                Packages packages = optPackage.get();
+                
+                hotel.setPackages(packages);
+                Hotel returnedHotel=hotelDao.save(hotel);
+            
+                 return returnedHotel;
 	    		  
 	    	  }
 	    	  else 
@@ -72,7 +72,7 @@ public class HotelServiceImpl implements HotelService{
 	}
 
 	@Override
-	public Hotel deleteHotel(Integer hotelId, String authKey) throws HotelException {
+public Hotel deleteHotel(Integer hotelId, String authKey) throws HotelException {
 		
 		Optional<CurrentUserLoginSession> opt=sessionRepository.findByAuthkey(authKey);
 	     
@@ -96,14 +96,12 @@ public class HotelServiceImpl implements HotelService{
 	    		  {
 	    			  Hotel hotel=hotelOpt.get();
 	    			  Packages packages=hotel.getPackages();
-	    			  List<Hotel> hotelList=packages.getHotelDetails();
-	    			  hotelList.remove(hotel);
 	    			  
-	    			  packages.setHotelDetails(hotelList);
-	    			  
-	    			  
-					    hotelDao.delete(hotel);
-					    return hotel;
+	    			  hotel.setPackages(null);
+	    			  hotelDao.delete(hotel);
+	    			  packageRepository.save(packages);
+	    			 
+	    			  return hotel;
 				 }
 	    		  
 	    	  }
@@ -116,7 +114,7 @@ public class HotelServiceImpl implements HotelService{
 	}
 
 	@Override
-	public Hotel updateHotel(Hotel hotel, String authKey) throws HotelException {
+public Hotel updateHotel(Hotel hotel, String authKey) throws HotelException {
 		
 		Optional<CurrentUserLoginSession> opt=sessionRepository.findByAuthkey(authKey);
 	     
@@ -138,7 +136,26 @@ public class HotelServiceImpl implements HotelService{
 	    		     }
 	    		  else 
 	    		  {
-	    			 return hotelDao.save(hotel);
+	    			  Hotel returnedHotel=hotelOpt.get();
+	    			  if(hotel.getAddress()!=null) {
+	    				  returnedHotel.setAddress(hotel.getAddress());
+	    			  }
+	    			  if(hotel.getHotelDescription()!=null) {
+	    				  returnedHotel.setHotelDescription(hotel.getHotelDescription());
+	    			  }
+	    			  if(hotel.getHotelName()!=null) {
+	    				  returnedHotel.setHotelName(hotel.getHotelName());
+	    			  }
+	    			  if(hotel.getHotelType()!=null) {
+	    				  returnedHotel.setHotelType(hotel.getHotelType());
+	    			  }
+	    			  if(hotel.getRent()!=0) {
+	    				  returnedHotel.setRent(hotel.getRent());
+	    			  }
+	    			  if(hotel.getStatus()!=null) {
+	    				  returnedHotel.setStatus(hotel.getStatus());
+	    			  }
+	    			 return hotelDao.save(returnedHotel);
 	    			 
 				 }
 	    		  
@@ -150,5 +167,4 @@ public class HotelServiceImpl implements HotelService{
 		 	
 		 }
 	}
-
 }

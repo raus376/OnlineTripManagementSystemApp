@@ -16,6 +16,7 @@ import app.trip.models.Route;
 import app.trip.models.Ticket;
 import app.trip.repository.PackageRepository;
 import app.trip.repository.RouteRepository;
+
 import app.trip.repository.SessionRepository;
 import app.trip.repository.TicketRepository;
 import app.trip.repository.UserRepository;
@@ -38,7 +39,6 @@ public class TicketServiceImpl implements TicketService {
 	
 	@Autowired
 	RouteRepository routeRepo;
-	
 
 	@Override
 	public List<Ticket> getAllTickets(Integer packageId,String authKey) throws InvalidTicketException {

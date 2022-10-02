@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,7 +20,6 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
-import lombok.Setter;
 
 @Data
 @Entity
@@ -33,6 +31,11 @@ public class User {
   @NotBlank @NotBlank @NotEmpty @Size(min = 3, max = 20,message = "Name must contain at least 3 characters")
 	private String name;
 	
+  @NotNull @Pattern(regexp = "[0-9]{10}")
+  private Integer mobile;
+  
+  @NotBlank @NotBlank @NotEmpty
+  private String address;
   @JsonIgnore
 	private String userType = "User";
 	
@@ -43,15 +46,12 @@ public class User {
   @NotNull @NotBlank @NotEmpty
 	private String password;
 
-//	@JsonIgnore
-//	@ManyToMany(cascade = CascadeType.ALL)
-//	private List<Booking> bookings = new ArrayList<>();
+	@JsonIgnore
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<Booking> bookings = new ArrayList<>();
 	
-
-	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
 	private List<Feedback> feedbacks;
-	
-	
 
 }
