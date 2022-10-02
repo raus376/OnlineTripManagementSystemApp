@@ -14,6 +14,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -26,9 +28,12 @@ public class Booking {
 	private String description;
 	private String bookingTitle;
 	private LocalDateTime date;
+	
+	
 	@ManyToMany(cascade = CascadeType.PERSIST)
 	private List<User> users = new ArrayList<>();
 	
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "package_f_id", referencedColumnName = "packageId")
     private Packages packages;

@@ -56,8 +56,7 @@ public class TravelServiceImplementation implements TravelService{
 	    	  User user=optUser.get();
 	    	  
 	    	  if(user.getUserType().equals("admin")) {
-	    		 System.out.println(travel);
-	    		  t= tDao.save(travel);	
+	    		 	
 	    		Set<Bus> buses= travel.getBuses();
 	    		for(Bus b:buses) {
 	    			b.setTDetails(travel);
