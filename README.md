@@ -70,7 +70,6 @@ The following Diagram depicts the flow of our Entity Relation Diagram to simplif
 
 <br>
 <br>
-<hr>
 
 <!-- ============================================  INSTALLATION AND RUN ======================================================  -->
 
