@@ -10,10 +10,12 @@ import app.trip.exceptions.AccessDeniedException;
 import app.trip.exceptions.InvalidRouteException;
 import app.trip.models.CurrentUserLoginSession;
 import app.trip.models.Route;
+import app.trip.models.Travel;
 import app.trip.repository.PackageRepository;
 import app.trip.repository.RouteRepository;
 import app.trip.repository.SessionRepository;
 import app.trip.repository.TicketRepository;
+import app.trip.repository.TravelRepository;
 import app.trip.repository.UserRepository;
 
 
@@ -35,10 +37,13 @@ public class RouteServiceImpl implements RouteService {
 	
 	@Autowired
 	UserRepository userRepo;
+	
+	@Autowired
+	TravelRepository travelRepo;
 
 	/* ADMIN ONLY ACCESS */
 	@Override
-	public Route addRoute(Route route, String authKey) throws AccessDeniedException, InvalidRouteException {
+	public Route addRoute(Route route, Integer travelId, String authKey) throws AccessDeniedException, InvalidRouteException {
 		Route createdRoute = null;
 		
 		Optional<CurrentUserLoginSession> culs = sessionRepo.findByAuthkey(authKey);
@@ -52,6 +57,13 @@ public class RouteServiceImpl implements RouteService {
 		}
 		
 		if(userType.equalsIgnoreCase("admin")) {
+			
+			Optional<Travel> travelOpt = travelRepo.findById(travelId);
+			
+			Travel travel = travelOpt.get();
+			
+			route.setTravelId(travel);
+			
 			createdRoute = routeRepo.save(route);
 		} else {
 			throw new AccessDeniedException("User is unauthorized for performing this function.");

@@ -49,10 +49,10 @@ public class RouteController {
 	
 	/* ADMIN ONLY ACCESS */
 	@PostMapping("/addRoute")
-	public ResponseEntity<Route> addRoute(@Valid @RequestBody Route route, @RequestParam String authKey) throws AccessDeniedException, InvalidRouteException {
+	public ResponseEntity<Route> addRoute(@Valid @RequestBody Route route, @RequestParam Integer travelId ,@RequestParam String authKey) throws AccessDeniedException, InvalidRouteException {
 		Route addedRoute = null;
 		
-		addedRoute = routeService.addRoute(route,authKey);
+		addedRoute = routeService.addRoute(route,travelId, authKey);
 		
 		return new ResponseEntity<Route>(addedRoute,HttpStatus.CREATED);
 	}
