@@ -2,6 +2,8 @@ package app.trip.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,13 +35,13 @@ public class PackageController {
 		return new ResponseEntity<List<Packages>>(pkgList,HttpStatus.OK);
 	}
 	@PostMapping("/createPackage")
-	public ResponseEntity<Packages> addNewPackage(@RequestBody Packages pkg, @RequestParam("Authentication Key") String authKey) throws PackageException{
+	public ResponseEntity<Packages> addNewPackage(@Valid @RequestBody Packages pkg, @RequestParam("Authentication Key") String authKey) throws PackageException{
 		Packages crePkg = pkgService.createPackage(pkg, authKey);
 		return new ResponseEntity<Packages>(crePkg,HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/updatePackage")
-	public ResponseEntity<Packages> updatePackage(@RequestBody Packages pkg, @RequestParam("Authentication Key") String authKey)throws PackageException{
+	public ResponseEntity<Packages> updatePackage(@Valid @RequestBody Packages pkg, @RequestParam("Authentication Key") String authKey)throws PackageException{
 		Packages updtPkg = pkgService.updatePackage(pkg, authKey);
 		return new ResponseEntity<Packages>(updtPkg,HttpStatus.OK);
 	}

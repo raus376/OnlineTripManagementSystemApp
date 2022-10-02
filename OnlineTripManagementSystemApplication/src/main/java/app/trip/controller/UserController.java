@@ -1,5 +1,7 @@
 package app.trip.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,13 +31,13 @@ public class UserController {
 	UserAuthenticationServices service;
 	
 	@PostMapping("/signup")
-	public ResponseEntity<String> userSignUp(@RequestBody User user)throws UserAlreadyExistsException{
+	public ResponseEntity<String> userSignUp(@Valid @RequestBody User user)throws UserAlreadyExistsException{
 		service.userSingUp(user);
 		return new ResponseEntity<String>("Registered Successfully",HttpStatus.CREATED);
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<SessionDTO> userSignIn(@RequestBody UserDTO user)throws UserAlreadyExistsException, InvalidCredentialException{
+	public ResponseEntity<SessionDTO> userSignIn(@Valid @RequestBody UserDTO user)throws UserAlreadyExistsException, InvalidCredentialException{
 		SessionDTO sdt = service.userLogin(user);
 		return new ResponseEntity<SessionDTO>(sdt,HttpStatus.OK);
 	}
@@ -47,7 +49,7 @@ public class UserController {
 	}
 	
 	@PutMapping("/profile")
-	public ResponseEntity<String> updateUser(@RequestBody User user)throws InvalidCredentialException{
+	public ResponseEntity<String> updateUser(@Valid @RequestBody User user)throws InvalidCredentialException{
 		 service.updateUser(user);
 		return new ResponseEntity<String>("User updated successfully...",HttpStatus.ACCEPTED);
 	}
