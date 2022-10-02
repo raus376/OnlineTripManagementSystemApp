@@ -70,7 +70,7 @@ public class RouteController {
 	public ResponseEntity<Route> removeRoute(@RequestParam Integer routeId, @RequestParam String authKey) throws InvalidRouteException, AccessDeniedException {
 		Route deletedRoute = routeService.removeRoute(routeId, authKey);
 		
-		return new ResponseEntity<Route>(deletedRoute,HttpStatus.GONE);
+		return new ResponseEntity<Route>(deletedRoute,HttpStatus.OK);
 	}
 	
 	
