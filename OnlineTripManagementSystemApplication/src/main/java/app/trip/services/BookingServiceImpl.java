@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import app.trip.exceptions.BookingException;
 import app.trip.models.Booking;
 import app.trip.models.CurrentUserLoginSession;
+import app.trip.models.Packages;
 import app.trip.models.User;
 import app.trip.repository.BookingRepository;
 import app.trip.repository.PackageRepository;
@@ -34,12 +35,19 @@ public class BookingServiceImpl implements BookingService{
 	 * Need get/setBookings 
 	 */
 	@Override
-	public Booking makeBooking(Booking bookings) throws BookingException {
-		List<User> users = bookings.getUsers();
-		for(User user:users) {
-			 user.getBookings().add(bookings);
-		}
-		return bookRepo.save(bookings);
+	public Booking makeBooking(Booking bookings, Integer pkgId) throws BookingException {
+		Optional<Packages> packagesOpt = pkgRepo.findById(pkgId);
+		
+		if(packagesOpt.isPresent()) {
+			List<User> users = bookings.getUsers();
+			for(User user:users) {
+				 user.getBookings().add(bookings);
+			}
+			bookings.setPackages(packagesOpt.get());
+			return bookRepo.save(bookings);
+		}else {
+			throw new BookingException("Provide valid package... ");
+		}	
 	}
 	
 	
@@ -77,10 +85,6 @@ public class BookingServiceImpl implements BookingService{
 			List<Booking> bookings = user.getBookings();
 			if(bookings.isEmpty()) {
 				throw new BookingException("No booking exists..");
-			}else {
-//				for(Booking booking: user.getBookings()) {
-//					user.getBookings().remove(booking);
-//				}
 			}
 			return bookings;
 		}else {

@@ -37,9 +37,9 @@ public class BookingController {
 	
 
 	@PostMapping("/book")
-	public ResponseEntity<Booking> makeBookings (@Valid @RequestBody Booking booking) throws BookingException{
+	public ResponseEntity<Booking> makeBookings (@Valid @RequestBody Booking booking, @RequestParam Integer pkgId) throws BookingException{
 		Booking createBooking = null;
-		createBooking = bookingService.makeBooking(booking);
+		createBooking = bookingService.makeBooking(booking, pkgId);
 		return new ResponseEntity<Booking>(createBooking, HttpStatus.CREATED);
 	}
 	

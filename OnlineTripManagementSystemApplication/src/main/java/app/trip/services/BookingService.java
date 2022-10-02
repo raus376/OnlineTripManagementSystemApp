@@ -8,7 +8,7 @@ import app.trip.models.User;
 
 public interface BookingService {
 	
-	public Booking makeBooking(Booking bookings) throws BookingException;;
+	public Booking makeBooking(Booking bookings,Integer pkgId) throws BookingException;;
 	public Booking cancelBooking(Integer bookingId) throws BookingException;; 
 	public List<Booking> viewBookings(Integer userId) throws BookingException;;
 	/*

@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,15 +30,15 @@ public class HotelController {
 		return new ResponseEntity<Hotel>(returnedHotel,HttpStatus.CREATED);
 	}
 	
-	@PostMapping("/hotel/delete/{hotelId}/{key}")
+	@DeleteMapping("/hotel/delete/{hotelId}/{key}")
 	public ResponseEntity<Hotel> deleteHotel(@PathVariable("hotelId") Integer hotelId,@PathVariable("key") String key) throws HotelException{
 		Hotel returnedHotel=hotelService.deleteHotel(hotelId, key);
-		return new ResponseEntity<Hotel>(returnedHotel,HttpStatus.CREATED);
+		return new ResponseEntity<Hotel>(returnedHotel,HttpStatus.OK);
 	}
-	@PostMapping("/hotel/update/{key}")
+	@PutMapping("/hotel/update/{key}")
 	public ResponseEntity<Hotel> updateHotel(@RequestBody Hotel hotel,@PathVariable("key") String key) throws HotelException{
 		Hotel returnedHotel=hotelService.updateHotel(hotel, key);
-		return new ResponseEntity<Hotel>(returnedHotel,HttpStatus.CREATED);
+		return new ResponseEntity<Hotel>(returnedHotel,HttpStatus.OK);
 	}
 
 }

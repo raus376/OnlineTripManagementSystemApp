@@ -31,6 +31,11 @@ public class User {
   @NotBlank @NotBlank @NotEmpty @Size(min = 3, max = 20,message = "Name must contain at least 3 characters")
 	private String name;
 	
+  @NotNull @Pattern(regexp = "[0-9]{10}")
+  private Integer mobile;
+  
+  @NotBlank @NotBlank @NotEmpty
+  private String address;
   @JsonIgnore
 	private String userType = "User";
 	
