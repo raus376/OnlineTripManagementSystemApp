@@ -1,45 +1,20 @@
-# Online Trip Management System
+<!-- ============================================  TITLE ======================================================  -->
+# REST API for Online Trip Management System
+
+<!-- ============================================  DETAILS ======================================================  -->
 
 <hr>
 <li>An Collabrative Project Consisting Of the 5 Developer Depicting the implementation of the Trip Managment Platform like MakeMyTrip or Yatra.
 <li>An developement of RESTful API for an application. This API performs all the fundamental CRUD operations of any with user validation at every step.
-<br>
-  
-# ER Diagram
-<hr>
-The following Diagram depicts the flow of our Entity Relation Diagram to simplify the work flow.
-<br>
-<br>
-  
-  
-![ER diagram](ER diagram link)
-
-<br>
-<br>
-<hr>
-  
-# REST API for an Online Cab Booking Application
 
 * We have developed this REST API for an Online Cab Booking application. This API performs all the fundamental CRUD operations of any Online Cab Booking platform with user validation at every step.
 * This project is developed by team of 5 Back-end Developers during project week in Masai School. 
 
-## Tech Stack
+  <br>
+  
+<!-- ============================================  FEATURES ======================================================  -->
 
-* Java
-* Spring Framework
-* Spring Boot
-* Spring Data JPA
-* Hibernate
-* MySQL
-
-## Modules
-
-* Login, Logout Module
-* Driver Module
-* Customer Module
-* Admin Module
-* TripBooking Module
-
+  
 ## Features
 
 * Customer, Driver and Admin authentication & validation with session uuid having.
@@ -52,6 +27,9 @@ The following Diagram depicts the flow of our Entity Relation Diagram to simplif
     * Viewing list of available cabs and booking a trip
     * Only logged in user can access his trip history, profile updation and other features.
 
+<!-- ============================================  CONTRIBUTORS ======================================================  -->
+
+  
 ## Contributors
 
 * [@Raja Yadav](https://github.com/RajaYadav00)
@@ -59,7 +37,44 @@ The following Diagram depicts the flow of our Entity Relation Diagram to simplif
 * [@Puja Kumari](https://github.com/Puja983542)
 * [@Rahul Kumar](https://github.com/rahulraka)
 * [@Najmush Saaquib](https://github.com/najmushsaaquib)
+  
+<!-- ============================================  TECH STACK ======================================================  -->
 
+## Tech Stack
+
+* Java
+* Spring Framework
+* Spring Boot
+* Spring Data JPA
+* Hibernate
+* MySQL
+
+<!-- ============================================  MODULES ======================================================  -->
+
+## Modules
+
+* Login, Logout Module
+* Driver Module
+* Customer Module
+* Admin Module
+* TripBooking Module
+
+<!-- ============================================  ER - DIAGRAM ======================================================  -->
+
+# ER Diagram
+<hr>
+The following Diagram depicts the flow of our Entity Relation Diagram to simplify the work flow.
+<br>
+<br>
+  
+  
+![ER diagram](ER diagram link)
+
+<br>
+<br>
+<hr>
+
+<!-- ============================================  INSTALLATION AND RUN ======================================================  -->
 
 ## Installation & Run
 
@@ -76,12 +91,16 @@ The following Diagram depicts the flow of our Entity Relation Diagram to simplif
 
 ```
 
+<!-- ============================================  API ROOT ENDPOINTS ======================================================  -->
+
 ## API Root Endpoint
 
 `https://localhost:8021/`
 
 `http://localhost:8021/swagger-ui.html`
 
+
+<!-- ============================================  API ENDPOINTS ======================================================  -->
 
 ## API Module Endpoints
 
@@ -124,6 +143,9 @@ The following Diagram depicts the flow of our Entity Relation Diagram to simplif
 * `GET /driver/driverlist` : Gets list of all the drivers
 * `GET /driver/bestdriver` : Gets the best driver whose rating is over 4.5
 * `PUT /driver/update` : Updates the driver details
+
+  
+<!-- ============================================  SAMPLE API RESPONSE ======================================================  -->
 
 ### Sample API Response for Customer Login
 
