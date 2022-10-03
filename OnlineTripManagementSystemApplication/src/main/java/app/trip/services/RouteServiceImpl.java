@@ -45,7 +45,7 @@ public class RouteServiceImpl implements RouteService {
 
 	/* ADMIN ONLY ACCESS */
 	@Override
-	public Route addRoute(Route route, Integer travelId, String authKey) throws AccessDeniedException, InvalidRouteException {
+	public Route addRoute(Route route, String authKey) throws AccessDeniedException, InvalidRouteException {
 		Route createdRoute = null;
 		
 		Optional<CurrentUserLoginSession> culs = sessionRepo.findByAuthkey(authKey);

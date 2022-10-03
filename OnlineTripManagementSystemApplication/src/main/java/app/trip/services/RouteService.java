@@ -9,7 +9,7 @@ import app.trip.models.Route;
 public interface RouteService {
 	
 	/* ADMIN ONLY ACCESS */
-	public Route addRoute(Route route, Integer travelId, String authKey) throws AccessDeniedException, InvalidRouteException;
+	public Route addRoute(Route route, String authKey) throws AccessDeniedException, InvalidRouteException;
 	
 	/* ADMIN ONLY ACCESS */
 	public Route updateRoute(Route route, String authKey) throws InvalidRouteException, AccessDeniedException;
