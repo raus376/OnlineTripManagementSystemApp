@@ -10,7 +10,7 @@
 <!-- ============================================  AUTHOR ======================================================  -->
 
 Author - [@Kunal Ladhani]()
-<!--  
+ 
 <!-- ============================================  FEATURES ======================================================  -->
 
   
@@ -101,8 +101,9 @@ The following Diagram depicts the flow of our Entity Relation Diagram to simplif
 
 `https://localhost:8888/`
 
-`http://localhost:8888/swagger-ui.html`
+`http://localhost:8888/swagger-ui/`
 
+<!-- 
 
 <!-- ============================================  API ENDPOINTS ======================================================  -->
 
@@ -178,4 +179,5 @@ The following Diagram depicts the flow of our Entity Relation Diagram to simplif
 ```
 <hr>
 this is a horizonatal line
+  
 -->
