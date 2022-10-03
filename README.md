@@ -34,11 +34,11 @@ Author - [@Kunal Ladhani]()
   
 ## Contributors
 
-* [@Raja Yadav](https://github.com/RajaYadav00)
-* [@Aniket Wagh](https://github.com/aniketw8)
-* [@Puja Kumari](https://github.com/Puja983542)
-* [@Rahul Kumar](https://github.com/rahulraka)
-* [@Najmush Saaquib](https://github.com/najmushsaaquib)
+* [@Raushan Kumar](https://github.com/raus376)
+* [@Lalit Kumar](https://github.com/lalitk1997)
+* [@Sumit Gangwar](https://github.com/Sumit-Gangwar)
+* [@Kunal Ladhani](https://github.com/Kunal-Ladhani)
+* [@Sandeep Sharma](https://github.com/Sbsharma0897)
   
 <!-- ============================================  TECH STACK ======================================================  -->
 
@@ -56,10 +56,15 @@ Author - [@Kunal Ladhani]()
 ## Modules
 
 * Login, Logout Module
-* Driver Module
-* Customer Module
-* Admin Module
-* TripBooking Module
+* Packages Module
+* Booking Module
+* TicketDetails Module
+* Route Module
+* Travels Module
+* Bus Module
+* Hotel Module
+* Report Module
+* Feedback Module
 
 <!-- ============================================  ER - DIAGRAM ======================================================  -->
 
@@ -70,7 +75,8 @@ The following Diagram depicts the flow of our Entity Relation Diagram to simplif
 <br>
   
   
-![ER diagram](ER diagram link)
+[Schema.pdf](https://github.com/raus376/OnlineTripManagementSystemApp/files/9695069/Schema.pdf)
+
 
 <br>
 <br>
@@ -83,9 +89,9 @@ The following Diagram depicts the flow of our Entity Relation Diagram to simplif
 * Update the port number, username and password as per your local database config.
 
 ```
-    server.port=8021
+    server.port=8888
 
-    spring.datasource.url=jdbc:mysql://localhost:3306/cabdb;
+    spring.datasource.url=jdbc:mysql://localhost:3306/mydb;
     spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
     spring.datasource.username=root
     spring.datasource.password=root
@@ -96,9 +102,9 @@ The following Diagram depicts the flow of our Entity Relation Diagram to simplif
 
 ## API Root Endpoint
 
-`https://localhost:8021/`
+`https://localhost:8888/`
 
-`http://localhost:8021/swagger-ui.html`
+`http://localhost:8888/swagger-ui.html`
 
 
 <!-- ============================================  API ENDPOINTS ======================================================  -->
