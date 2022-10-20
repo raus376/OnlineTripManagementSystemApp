@@ -1,5 +1,7 @@
 package app.trip.controller;
 
+import java.time.LocalDateTime;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import app.trip.exceptions.InvalidCredentialException;
 import app.trip.exceptions.UserAlreadyExistsException;
+import app.trip.models.MessageDTO;
 import app.trip.models.SessionDTO;
 import app.trip.models.User;
 import app.trip.models.UserDTO;
@@ -31,9 +34,18 @@ public class UserController {
 	UserAuthenticationServices service;
 	
 	@PostMapping("/signup")
-	public ResponseEntity<String> userSignUp(@Valid @RequestBody User user)throws UserAlreadyExistsException{
-		service.userSingUp(user);
-		return new ResponseEntity<String>("Registered Successfully",HttpStatus.CREATED);
+	public ResponseEntity<MessageDTO> userSignUp(@Valid @RequestBody User user)throws UserAlreadyExistsException{
+		
+		User signedUpUser = service.userSignUp(user);
+		
+		MessageDTO message = new MessageDTO(); 
+		
+		if(signedUpUser != null) {
+			message.setMessage("Registered Successfully");
+			message.setTimestamp(LocalDateTime.now());
+		}
+		
+		return new ResponseEntity<MessageDTO>(message,HttpStatus.CREATED);
 	}
 	
 	@PostMapping("/login")
@@ -43,9 +55,14 @@ public class UserController {
 	}
 	
 	@PostMapping("/logout")
-	public ResponseEntity<String> userLogout(@RequestParam(value = "key") String authKey)throws InvalidCredentialException{
-		service.userLogout(authKey);
-		return new ResponseEntity<String>("Logged out successfully...",HttpStatus.OK);
+	public ResponseEntity<MessageDTO> userLogout(@RequestParam(value = "key") String authKey)throws InvalidCredentialException{
+		MessageDTO message = new MessageDTO(); 
+		
+		String msg = service.userLogout(authKey);
+		message.setMessage(msg);
+		message.setTimestamp(LocalDateTime.now());
+		
+		return new ResponseEntity<MessageDTO>(message,HttpStatus.OK);
 	}
 	
 	@PutMapping("/profile")

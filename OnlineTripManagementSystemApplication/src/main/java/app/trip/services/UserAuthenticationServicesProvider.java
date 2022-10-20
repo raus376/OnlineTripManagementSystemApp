@@ -31,7 +31,7 @@ public class UserAuthenticationServicesProvider implements UserAuthenticationSer
 	SessionRepository sessionRepo;
 	
 	@Override
-	public User userSingUp(User user) throws UserAlreadyExistsException {
+	public User userSignUp(User user) throws UserAlreadyExistsException {
 		Optional<User> opt = userRepo.findByEmail(user.getEmail());
 		if(opt.isPresent()) {
 			throw new UserAlreadyExistsException("User already registered");
@@ -78,7 +78,7 @@ public class UserAuthenticationServicesProvider implements UserAuthenticationSer
 			throw new InvalidCredentialException("User has not logged In with key : "+authKey);
 		}
 		sessionRepo.delete(culs.get());
-		return "Logout successfully...";
+		return "Logged out successfully.";
 	}
 
 	@Override

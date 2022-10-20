@@ -72,4 +72,85 @@ public class GlobalExceptionHandler {
 		ped.setDescription(req.getDescription(false));
 		return new ResponseEntity<ErrorDetails>(ped,HttpStatus.BAD_REQUEST);
 	}
+	
+	@ExceptionHandler(InvalidCredentialException.class)
+	public ResponseEntity<ErrorDetails> InvalidcredentialExceptionHandler(InvalidCredentialException ice, WebRequest req){
+		ErrorDetails authEx = new ErrorDetails();
+		authEx.setTimestamp(LocalDateTime.now());
+		authEx.setMessage(ice.getMessage());
+		authEx.setDescription(req.getDescription(false));
+		
+		return new ResponseEntity<ErrorDetails>(authEx,HttpStatus.BAD_REQUEST);
+	}
+	@ExceptionHandler(UserAlreadyExistsException.class)
+	public ResponseEntity<ErrorDetails> DuplicateSignUpExceptionHandler(UserAlreadyExistsException uae, WebRequest req){
+		ErrorDetails authEx = new ErrorDetails();
+		authEx.setTimestamp(LocalDateTime.now());
+		authEx.setMessage(uae.getMessage());
+		authEx.setDescription(req.getDescription(false));
+		
+		return new ResponseEntity<ErrorDetails>(authEx,HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(BookingException.class)
+	public ResponseEntity<ErrorDetails> bookingExceptionHandler(BookingException be, WebRequest req){
+		ErrorDetails bookexe = new ErrorDetails();
+		bookexe.setTimestamp(LocalDateTime.now());
+		bookexe.setMessage(be.getMessage());
+		bookexe.setDescription(req.getDescription(false));
+		return new ResponseEntity<ErrorDetails>(bookexe,HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(BusException.class)
+	public ResponseEntity<ErrorDetails> busExceptionHandler(BusException be, WebRequest req){
+		
+		ErrorDetails err=new ErrorDetails();
+		err.setTimestamp(LocalDateTime.now());
+		err.setMessage(be.getMessage());
+		err.setDescription(req.getDescription(false));
+		
+		return new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(FeedbackException.class)
+	public ResponseEntity<ErrorDetails> OtherExceptionHandler(FeedbackException uae, WebRequest req){
+		ErrorDetails authEx = new ErrorDetails();
+		authEx.setTimestamp(LocalDateTime.now());
+		authEx.setMessage(uae.getMessage());
+		authEx.setDescription(req.getDescription(false));
+		
+		return new ResponseEntity<ErrorDetails>(authEx,HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(HotelException.class)
+	public ResponseEntity<ErrorDetails> OtherExceptionHandler(HotelException uae, WebRequest req){
+		ErrorDetails authEx = new ErrorDetails();
+		authEx.setTimestamp(LocalDateTime.now());
+		authEx.setMessage(uae.getMessage());
+		authEx.setDescription(req.getDescription(false));
+		
+		return new ResponseEntity<ErrorDetails>(authEx,HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(ReportException.class)
+	public ResponseEntity<ErrorDetails> packageExceptionHandler(ReportException re, WebRequest req){
+		ErrorDetails red = new ErrorDetails();
+		red.setTimestamp(LocalDateTime.now());
+		red.setMessage(re.getMessage());
+		red.setDescription(req.getDescription(false));
+		return new ResponseEntity<ErrorDetails>(red,HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(TravelException.class)
+	public ResponseEntity<ErrorDetails> travelExceptionHandler(TravelException te, WebRequest req){
+		
+		ErrorDetails err=new ErrorDetails();
+		err.setTimestamp(LocalDateTime.now());
+		err.setMessage(te.getMessage());
+		err.setDescription(req.getDescription(false));
+		
+		return new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
+	}
+	
+
 }

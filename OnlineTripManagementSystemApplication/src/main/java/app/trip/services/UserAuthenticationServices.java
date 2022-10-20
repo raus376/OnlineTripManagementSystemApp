@@ -8,7 +8,7 @@ import app.trip.models.UserDTO;
 
 public interface UserAuthenticationServices {
 	
-	public User userSingUp(User user)throws UserAlreadyExistsException;
+	public User userSignUp(User user)throws UserAlreadyExistsException;
 	public SessionDTO userLogin(UserDTO user)throws InvalidCredentialException;
 	public String userLogout(String authKey)throws InvalidCredentialException;
 	public boolean updateUser(User user)throws InvalidCredentialException;
