@@ -12,6 +12,7 @@ import org.springframework.web.context.request.WebRequest;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 	
+	// GENERAL EXCEPTION HANDLER 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ErrorDetails> OtherExceptionHandler(Exception exp, WebRequest req){
 		ErrorDetails authEx = new ErrorDetails();
@@ -22,7 +23,7 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<ErrorDetails>(authEx,HttpStatus.BAD_REQUEST);
 	}
 	
-	
+	// MANV EXCEPTION HANDLER
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ErrorDetails> MethodArgumentNotValidExceptionHandler(MethodArgumentNotValidException exp) {
 		
@@ -34,6 +35,7 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<ErrorDetails>(authEx,HttpStatus.BAD_REQUEST);
 	}
 
+	//ACCESS DENIED EXCEPTION HANDLER
 	@ExceptionHandler(AccessDeniedException.class)
 	public ResponseEntity<ErrorDetails> AccessDeniedExceptionHandler(AccessDeniedException exp, WebRequest req){
 		ErrorDetails authEx = new ErrorDetails();
@@ -44,6 +46,7 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<ErrorDetails>(authEx,HttpStatus.FORBIDDEN);
 	}
 	
+	//TICKET EXCEPTION HANDLER 
 	@ExceptionHandler(InvalidTicketException.class)
 	public ResponseEntity<ErrorDetails> InvalidTicketExceptionHandler(InvalidTicketException exp, WebRequest req){
 		ErrorDetails authEx = new ErrorDetails();
@@ -54,6 +57,7 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<ErrorDetails>(authEx,HttpStatus.NO_CONTENT);
 	}
 	
+	//ROUTE EXCEPTION HANDLER 
 	@ExceptionHandler(InvalidRouteException.class)
 	public ResponseEntity<ErrorDetails> InvalidRouteExceptionHandler(InvalidRouteException exp, WebRequest req){
 		ErrorDetails authEx = new ErrorDetails();
@@ -64,6 +68,7 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<ErrorDetails>(authEx,HttpStatus.NOT_FOUND);
 	}
 	
+	//PACKAGE EXCEPTION HANDLER 
 	@ExceptionHandler(PackageException.class)
 	public ResponseEntity<ErrorDetails> packageExceptionHandler(PackageException pe, WebRequest req){
 		ErrorDetails ped = new ErrorDetails();
@@ -73,6 +78,7 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<ErrorDetails>(ped,HttpStatus.BAD_REQUEST);
 	}
 	
+	//INVALID CREDENTIALS EXCEPTION HANDLER 
 	@ExceptionHandler(InvalidCredentialException.class)
 	public ResponseEntity<ErrorDetails> InvalidcredentialExceptionHandler(InvalidCredentialException ice, WebRequest req){
 		ErrorDetails authEx = new ErrorDetails();
@@ -82,6 +88,8 @@ public class GlobalExceptionHandler {
 		
 		return new ResponseEntity<ErrorDetails>(authEx,HttpStatus.BAD_REQUEST);
 	}
+	
+	//USER EXCEPTION HANDLER 
 	@ExceptionHandler(UserAlreadyExistsException.class)
 	public ResponseEntity<ErrorDetails> DuplicateSignUpExceptionHandler(UserAlreadyExistsException uae, WebRequest req){
 		ErrorDetails authEx = new ErrorDetails();
@@ -92,6 +100,7 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<ErrorDetails>(authEx,HttpStatus.BAD_REQUEST);
 	}
 	
+	//BOOKING EXCEPTION HANDLER 
 	@ExceptionHandler(BookingException.class)
 	public ResponseEntity<ErrorDetails> bookingExceptionHandler(BookingException be, WebRequest req){
 		ErrorDetails bookexe = new ErrorDetails();
@@ -101,6 +110,7 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<ErrorDetails>(bookexe,HttpStatus.BAD_REQUEST);
 	}
 	
+	//BUS EXCEPTION HANDLER
 	@ExceptionHandler(BusException.class)
 	public ResponseEntity<ErrorDetails> busExceptionHandler(BusException be, WebRequest req){
 		
@@ -112,6 +122,7 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
 	}
 
+	//FEEDBACK EXCEPTION HANDLER
 	@ExceptionHandler(FeedbackException.class)
 	public ResponseEntity<ErrorDetails> OtherExceptionHandler(FeedbackException uae, WebRequest req){
 		ErrorDetails authEx = new ErrorDetails();
@@ -122,6 +133,7 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<ErrorDetails>(authEx,HttpStatus.BAD_REQUEST);
 	}
 	
+	//HOTEL EXCEPTION HANDLER
 	@ExceptionHandler(HotelException.class)
 	public ResponseEntity<ErrorDetails> OtherExceptionHandler(HotelException uae, WebRequest req){
 		ErrorDetails authEx = new ErrorDetails();
@@ -132,6 +144,7 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<ErrorDetails>(authEx,HttpStatus.BAD_REQUEST);
 	}
 	
+	//REPORT EXCEPTION HANDLER
 	@ExceptionHandler(ReportException.class)
 	public ResponseEntity<ErrorDetails> packageExceptionHandler(ReportException re, WebRequest req){
 		ErrorDetails red = new ErrorDetails();
@@ -141,6 +154,7 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<ErrorDetails>(red,HttpStatus.BAD_REQUEST);
 	}
 	
+	//TRAVEL EXCEPTION HANDLER
 	@ExceptionHandler(TravelException.class)
 	public ResponseEntity<ErrorDetails> travelExceptionHandler(TravelException te, WebRequest req){
 		
