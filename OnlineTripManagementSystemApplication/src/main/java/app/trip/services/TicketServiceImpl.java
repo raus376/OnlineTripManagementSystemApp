@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import app.trip.exceptions.AccessDeniedException;
 import app.trip.exceptions.InvalidCredentialException;
 import app.trip.exceptions.InvalidRouteException;
 import app.trip.exceptions.InvalidTicketException;
@@ -41,13 +42,19 @@ public class TicketServiceImpl implements TicketService {
 	RouteRepository routeRepo;
 
 	@Override
-	public List<Ticket> getAllTickets(Integer packageId,String authKey) throws InvalidTicketException {
+	public List<Ticket> getAllTickets(Integer packageId, String authKey) throws InvalidTicketException, AccessDeniedException {
 		List<Ticket> tickets = null;
 		
 		Optional<CurrentUserLoginSession> culs = sessionRepo.findByAuthkey(authKey);
 		
 		String userType = userRepo.findById(culs.get().getUserId()).get().getUserType();
 				
+		// CHECK IF API CALLER IS VALID USER		
+		if(!userType.equalsIgnoreCase("user") && !userType.equalsIgnoreCase("admin")) {
+			throw new AccessDeniedException("Access Denied");		
+		}
+		
+		
 		if(userType.equalsIgnoreCase("user") && packageId != null) {
 			Optional<Packages> pkg = pkgRepo.findById(packageId);
 			Packages packages = pkg.get();
@@ -70,7 +77,17 @@ public class TicketServiceImpl implements TicketService {
 	}
 	
 	@Override
-	public Ticket getTicket(Integer ticketId) throws InvalidTicketException {
+	public Ticket getTicket(Integer ticketId, String authKey) throws InvalidTicketException, AccessDeniedException {
+		
+		// CHECK IF API CALLER IS VALID USER
+		Optional<CurrentUserLoginSession> culs = sessionRepo.findByAuthkey(authKey);
+		
+		String userType = userRepo.findById(culs.get().getUserId()).get().getUserType();
+		
+		if(!userType.equalsIgnoreCase("user") && !userType.equalsIgnoreCase("admin")) {
+			throw new AccessDeniedException("Access Denied");		
+		}
+		
 		Ticket ticket = null;
 		
 		Optional<Ticket> tkt = ticketRepo.findById(ticketId);
@@ -80,13 +97,22 @@ public class TicketServiceImpl implements TicketService {
 		} else {
 			ticket = tkt.get();
 		}
-		
+			
 		return ticket;
 	}
 	
 	@Override
-	public Ticket createTicket(Ticket ticket, Integer packageId, Integer routeId) throws InvalidTicketException, PackageException, InvalidRouteException  {
+	public Ticket createTicket(Ticket ticket, Integer packageId, Integer routeId, String authKey) throws InvalidTicketException, PackageException, InvalidRouteException, AccessDeniedException  {
 		
+		// CHECK IF API CALLER IS VALID USER
+		Optional<CurrentUserLoginSession> culs = sessionRepo.findByAuthkey(authKey);
+		
+		String userType = userRepo.findById(culs.get().getUserId()).get().getUserType();
+		
+		if(!userType.equalsIgnoreCase("user") && !userType.equalsIgnoreCase("admin")) {
+			throw new AccessDeniedException("Access Denied");		
+		}
+
 		Optional<Packages> pkgOpt = pkgRepo.findById(packageId);
 		if(pkgOpt.isEmpty()) {
 			throw new PackageException("Package with package id = "+packageId+" does not exist.");
@@ -107,7 +133,16 @@ public class TicketServiceImpl implements TicketService {
 
 	
 	@Override
-	public Ticket deleteTicket(Integer ticketId) throws InvalidTicketException {
+	public Ticket deleteTicket(Integer ticketId, String authKey) throws InvalidTicketException, AccessDeniedException {
+		// CHECK IF API CALLER IS VALID USER
+		Optional<CurrentUserLoginSession> culs = sessionRepo.findByAuthkey(authKey);
+		
+		String userType = userRepo.findById(culs.get().getUserId()).get().getUserType();
+		
+		if(!userType.equalsIgnoreCase("user") && !userType.equalsIgnoreCase("admin")) {
+			throw new AccessDeniedException("Access Denied");		
+		}
+		
 		Ticket ticket = null;
 		
 		Optional<Ticket> user = ticketRepo.findById(ticketId);		

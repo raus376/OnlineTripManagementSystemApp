@@ -26,7 +26,7 @@ public class TravelController {
 	private TravelService tService;
 	
 	@PostMapping("/travels/{key}")
-	public ResponseEntity<Travel> addTravle(@PathVariable("key") String key,@RequestBody Travel travel) throws TravelException{
+	public ResponseEntity<Travel> addTravel(@PathVariable("key") String key,@RequestBody Travel travel) throws TravelException{
 		
 		Travel travels=tService.addTravels(travel, key);
 	
@@ -35,7 +35,7 @@ public class TravelController {
 	}
 	
 	@PutMapping("/travelsUpdate/{key}")
-	public ResponseEntity<Travel> updateTravle(@PathVariable("key") String key,@RequestBody Travel travel) throws TravelException{
+	public ResponseEntity<Travel> updateTravel(@PathVariable("key") String key,@RequestBody Travel travel) throws TravelException{
 		
 		Travel travels=tService.updateTravels(travel,key);
 	
@@ -44,7 +44,7 @@ public class TravelController {
 	}
 	
 	@DeleteMapping("/travelsDelete/{travelId}/{key}")
-	public ResponseEntity<Travel> deleteTravle(@PathVariable("key") String key,@PathVariable("travelId") Integer travelId) throws TravelException{
+	public ResponseEntity<Travel> deleteTravel(@PathVariable("key") String key,@PathVariable("travelId") Integer travelId) throws TravelException{
 		
 		Travel travels=tService.removeTravels(travelId, key);
 	
@@ -53,7 +53,7 @@ public class TravelController {
 	}
 	
 	@GetMapping("/travelsSearch/{travelId}")
-	public ResponseEntity<Travel> serchTravle(@PathVariable("travelId") Integer travelId) throws TravelException{
+	public ResponseEntity<Travel> serchTravel(@PathVariable("travelId") Integer travelId) throws TravelException{
 		
 		Travel travels=tService.serchTravels(travelId);
 	
@@ -62,7 +62,7 @@ public class TravelController {
 	}
 	
 	@GetMapping("/travelsList")
-	public ResponseEntity<List<Travel>> getListOfTravle() throws TravelException{
+	public ResponseEntity<List<Travel>> getListOfTravel() throws TravelException{
 		
 		List<Travel> travels=tService.viewTravels();
 	
