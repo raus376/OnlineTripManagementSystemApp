@@ -7,7 +7,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +23,6 @@ import app.trip.models.Route;
 import app.trip.services.RouteService;
 
 
-
 @RestController
 @RequestMapping("/routes")
 @CrossOrigin(origins = "*")
@@ -39,7 +37,7 @@ public class RouteController {
 		
 		return new ResponseEntity<Route>(route, HttpStatus.FOUND);
 	}
-	
+		
 	@GetMapping("/seeAllRoutes")
 	public ResponseEntity<List<Route>> viewRouteList() throws InvalidRouteException {
 		List<Route> routes = routeService.viewRouteList();
