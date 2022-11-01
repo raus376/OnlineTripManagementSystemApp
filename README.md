@@ -4,16 +4,14 @@
 <!-- ============================================  DETAILS ======================================================  -->
 
 <li>An Collabrative Project Consisting Of the 5 Developer Depicting the implementation of the Trip Managment Platform like MakeMyTrip or Yatra.
-<li>An developement of RESTful API for an application. This API performs all the fundamental CRUD operations of any with user validation at every step.
+<li>The REST API performs all the fundamental CRUD operations and business logics of any Trip Management System like MakeMyTrip with user authentication at every API endpoint.
 <br>
 
 <!-- ============================================  AUTHOR ======================================================  -->
 
-Author - [@Kunal Ladhani]()
+Author - **[@Kunal Ladhani](https://github.com/Kunal-Ladhani)**
  
 <!-- ============================================  FEATURES ======================================================  -->
-
-  
 ## Features
 
 * Customer, Driver and Admin authentication & validation with session uuid having.
@@ -27,16 +25,13 @@ Author - [@Kunal Ladhani]()
     * Only logged in user can access his trip history, profile updation and other features.
 
 <!-- ============================================  CONTRIBUTORS ======================================================  -->
+## Our Team Members 👨‍💻
+  - **[@Kunal Ladhani](https://github.com/Kunal-Ladhani)**
+  - **[@Sumit Gangwar](https://github.com/Sumit-Gangwar)**
+  - **[@Lalit Kumar](https://github.com/lalitk1997)**
+  - **[@Raushan Kumar](https://github.com/raus376)**
+  - **[@Sandeep Sharma](https://github.com/Sbsharma0897)**
 
-  
-## Contributors
-
-* [@Raushan Kumar](https://github.com/raus376)
-* [@Lalit Kumar](https://github.com/lalitk1997)
-* [@Sumit Gangwar](https://github.com/Sumit-Gangwar)
-* [@Kunal Ladhani](https://github.com/Kunal-Ladhani)
-* [@Sandeep Sharma](https://github.com/Sbsharma0897)
-  
 <!-- ============================================  TECH STACK ======================================================  -->
 
 ## Tech Stack
@@ -47,6 +42,8 @@ Author - [@Kunal Ladhani]()
 * Spring Data JPA
 * Hibernate
 * MySQL
+* Postman
+* Swagger UI
 
 <!-- ============================================  MODULES ======================================================  -->
 
@@ -70,13 +67,15 @@ Author - [@Kunal Ladhani]()
 The following Diagram depicts the flow of our Entity Relation Diagram to simplify the work flow.
 <br>
 <br>
-  
-  
-[Schema.pdf](https://github.com/raus376/OnlineTripManagementSystemApp/files/9695069/Schema.pdf)
-
-
+![ER Diagram - DB Schema](https://github.com/raus376/OnlineTripManagementSystemApp/blob/addb16bf0cd504c3bd804e4cb9d4b7429055ac7a/DB%20Schema%20-%20ER%20Diagram.JPG)
 <br>
 <br>
+
+<!-- ============================================  DOCUMENTATION ======================================================  -->
+
+## Documentation
+
+SWAGGER UI Documentation - `http://localhost:8888/swagger-ui/`
 
 <!-- ============================================  INSTALLATION AND RUN ======================================================  -->
 
@@ -100,5 +99,3 @@ The following Diagram depicts the flow of our Entity Relation Diagram to simplif
 ## API Root Endpoint
 
 `https://localhost:8888/`
-
-`http://localhost:8888/swagger-ui/`
