@@ -1,40 +1,35 @@
 package app.trip.config;
 
-import java.util.Collection;
-import java.util.Collections;
-
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.servers.Server;
+import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
+import java.util.List;
 
 @Configuration
+@EnableWebMvc
+@OpenAPIDefinition
 public class SwaggerConfig {
 
 	@Bean
-	public Docket api() {
-		return new Docket(DocumentationType.SWAGGER_2)
-				.apiInfo(getInfo())
-				.select()
-				.apis(RequestHandlerSelectors.any())
-				.paths(PathSelectors.any())
-				.build();
-				
-	}
-
-	private ApiInfo getInfo() {
-		return new ApiInfo("Trip Management System : REST API",
-				"REST API for Online Trip Mangement System created using Spring, Spring Boot, Hibernate, JPA, Maven for Backend Project.",
-				"1.0",
-				"Terms of Service",
-				new Contact("Kunal Ladhani", "https://kunal-ladhani.github.io/", "k.ladhani1@gmail.com"),
-				"License of APIs",
-				"API License URL",
-				Collections.EMPTY_LIST);
+	public OpenAPI springShopOpenAPI() {
+		return new OpenAPI()
+				.servers(List.of(new Server().url("localhost:8080/")))
+				.info(new Info()
+						.title("Trip Management System : REST API")
+						.description("REST API for Online Trip Management System created using Spring, Spring Boot, Hibernate, JPA, Maven for Backend Project.")
+						.version("v1.0.0")
+						.contact(new Contact()
+								.name("Kunal Ladhani")
+								.url("https://kunal-ladhani.github.io/")
+								.email("k.ladhani1@gmail.com")
+						)
+				);
 	}
 }
